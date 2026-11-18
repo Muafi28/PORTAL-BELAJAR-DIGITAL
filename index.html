@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Belajar Mandiri - Materi Semester Ganjil MI</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans untuk Teks Umum & Amiri untuk Teks Arab -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        arabic: ['"Amiri"', 'serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065f46',
+                            900: '#064e3b',
+                        },
+                        gold: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Kustomisasi Tampilan Arab & Utilitas */
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            direction: rtl;
+            unicode-bidi: isolate;
+            line-height: 2.2;
+        }
+        
+        /* Mode Fokus Baca */
+        body.focus-mode header,
+        body.focus-mode #filter-section,
+        body.focus-mode #subject-sidebar {
+            display: none !important;
+        }
+        body.focus-mode #main-content-wrapper {
+            max-width: 850px !important;
+            margin: 0 auto !important;
+        }
+
+        /* Anti-Print Warning / Protection */
+        @media print {
+            body * {
+                display: none !important;
+            }
+            body::after {
+                content: "Dokumen ini adalah Portal Belajar Digital Interaktif. Silakan pelajari langsung melalui perangkat Anda untuk pemahaman konsep yang utuh.";
+                display: block !important;
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 18px;
+                text-align: center;
+                padding: 50px;
+                color: #065f46;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Top Floating Bar untuk Mode Fokus Baca (Muncul saat Mode Fokus Aktif) -->
+    <div id="focus-exit-bar" class="hidden fixed top-4 right-4 z-50">
+        <button onclick="toggleFocusMode()" class="flex items-center gap-2 bg-emerald-800 hover:bg-emerald-900 text-white px-4 py-2.5 rounded-full shadow-lg text-sm font-semibold transition-all">
+            <i data-lucide="minimize-2" class="w-4 h-4"></i>
+            <span>Keluar Mode Fokus Baca</span>
+        </button>
+    </div>
+
+    <!-- Hero Header -->
+    <header class="bg-gradient-to-br from-emerald-900 via-emerald-800 to-teal-900 text-white relative overflow-hidden">
+        <!-- Decorative Islamic Geometric Pattern Overlay -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#fbbf24 1.5px, transparent 1.5px), radial-gradient(#fbbf24 1.5px, #064e3b 1.5px); background-size: 36px 36px; background-position: 0 0, 18px 18px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-14 relative z-10">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div class="max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-700/60 border border-emerald-500/30 text-gold-300 text-xs font-semibold tracking-wide uppercase mb-4">
+                        <i data-lucide="book-open-check" class="w-4 h-4 text-gold-400"></i>
+                        <span>Bahan Ajar Komprehensif Semester Ganjil</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-3">
+                        Portal Belajar Mandiri <span class="text-gold-400">Madrasah Ibtidaiyah</span>
+                    </h1>
+                    <p class="text-emerald-100 text-base sm:text-lg leading-relaxed">
+                        Panduan belajar terstruktur, mendalam, dan interaktif untuk memahami seluruh konsep materi pelajaran Semester Ganjil secara utuh.
+                    </p>
+                </div>
+
+                <!-- Quick Action & Mode Fokus -->
+                <div class="flex flex-col sm:flex-row md:flex-col gap-3 shrink-0">
+                    <button onclick="toggleFocusMode()" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-5 py-3 rounded-xl font-semibold text-sm transition-all shadow-sm">
+                        <i data-lucide="maximize-2" class="w-4 h-4 text-gold-400"></i>
+                        <span>Mode Fokus Baca</span>
+                    </button>
+                    <div class="bg-emerald-950/50 border border-emerald-700/50 rounded-xl px-4 py-2.5 text-xs text-emerald-200 flex items-center gap-2">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-gold-400 shrink-0"></i>
+                        <span>Dilengkapi Materi Pengayaan & Latihan Konsep</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter & Search Bar Section -->
+    <section id="filter-section" class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
+                <!-- Grade Filter Tabs -->
+                <div class="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 no-scrollbar" id="grade-tabs">
+                    <button onclick="filterByGrade('all')" data-grade="all" class="grade-tab active px-4 py-2 rounded-xl text-sm font-bold transition-all bg-emerald-700 text-white shadow-sm whitespace-nowrap">
+                        Semua Kelas (9 Mapel)
+                    </button>
+                    <button onclick="filterByGrade('3')" data-grade="3" class="grade-tab px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+                        Kelas 3 MI
+                    </button>
+                    <button onclick="filterByGrade('4')" data-grade="4" class="grade-tab px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+                        Kelas 4 MI
+                    </button>
+                    <button onclick="filterByGrade('6')" data-grade="6" class="grade-tab px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-all whitespace-nowrap">
+                        Kelas 6 MI
+                    </button>
+                </div>
+
+                <!-- Search Input -->
+                <div class="relative w-full md:w-80">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                    <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari bab, kosakata, atau topik..." 
+                        class="w-full pl-10 pr-4 py-2 bg-slate-100 border border-transparent focus:border-emerald-500 focus:bg-white rounded-xl text-sm text-slate-800 placeholder-slate-400 outline-none transition-all">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Layout -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- Sidebar Subject Selector -->
+            <aside id="subject-sidebar" class="w-full lg:w-72 shrink-0">
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-4 sticky top-20">
+                    <div class="flex items-center justify-between px-2 mb-3">
+                        <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-400">Daftar Mata Pelajaran</h2>
+                        <span id="subject-count" class="text-xs font-bold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md">9 Mapel</span>
+                    </div>
+                    <nav id="subject-list" class="flex lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+                        <!-- Rendered by JS -->
+                    </nav>
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div id="main-content-wrapper" class="flex-1 min-w-0">
+                <!-- Subject Header Card -->
+                <div id="subject-header" class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 sm:p-8 mb-6 relative overflow-hidden">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <!-- Mode Switcher: Materi Pelajaran vs Uji Pemahaman Konsep -->
+                <div class="flex items-center gap-2 bg-slate-200/70 p-1.5 rounded-2xl mb-6 w-fit">
+                    <button onclick="switchViewTab('materi')" id="tab-btn-materi" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-emerald-800 shadow-sm transition-all">
+                        <i data-lucide="book-open" class="w-4 h-4"></i>
+                        <span>Materi & Pengayaan Lengkap</span>
+                    </button>
+                    <button onclick="switchViewTab('quiz')" id="tab-btn-quiz" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all">
+                        <i data-lucide="brain-circuit" class="w-4 h-4 text-gold-600"></i>
+                        <span>Uji Pemahaman Konsep</span>
+                    </button>
+                </div>
+
+                <!-- View 1: Materi Chapters Container -->
+                <div id="chapters-container" class="space-y-6">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <!-- View 2: Uji Pemahaman Konsep Container -->
+                <div id="quiz-container" class="hidden">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-16 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <div class="flex items-center gap-2 font-semibold text-slate-700">
+                <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-600"></i>
+                <span>Portal Belajar Mandiri MI — Semester Ganjil</span>
+            </div>
+            <p class="text-center sm:text-right text-xs">
+                Disusun sebagai media belajar konsep mendalam & pengayaan materi kurikulum Madrasah Ibtidaiyah.
+            </p>
+        </div>
+    </footer>
+
+    <!-- DATA & APPLICATION LOGIC -->
+    <script>
+        // ==========================================
+        // DATABASE MATERI LENGKAP & PENGAYAAN (9 MAPEL)
+        // ==========================================
+        const curriculumData = [
+            // 1. AKIDAH AKHLAK KELAS 3
+            {
+                id: 'akidah-3',
+                grade: '3',
+                title: 'Akidah Akhlak',
+                gradeLabel: 'Kelas 3 MI',
+                icon: 'heart-handshake',
+                color: 'emerald',
+                description: 'Memahami makna syukur nikmat, mengenal keindahan Asmaul Husna, membiasakan akhlak taat kepada Allah, orang tua, dan guru, serta meneladani keteguhan iman Nabi Ibrahim a.s.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Nikmat Allah SWT & Sikap Bersyukur',
+                        summary: 'Memahami berbagai anugerah Allah dalam kehidupan serta cara mensyukurinya melalui hati, lisan, dan perbuatan.',
+                        sections: [
+                            {
+                                heading: '1. Pengertian Syukur dan Macam-Macam Nikmat Allah',
+                                content: `<p class="mb-3"><strong>Syukur</strong> adalah sikap berterima kasih kepada Allah SWT atas segala nikmat dan karunia yang telah diberikan kepada kita, serta menggunakan nikmat tersebut di jalan yang diridhai-Nya. Lawan dari sifat syukur adalah <em>kufur nikmat</em> (mengingkari atau menyalahgunakan nikmat Allah).</p>
+                                <p class="mb-2 font-semibold text-emerald-800">Ragam Nikmat Allah dalam Kehidupan:</p>
+                                <ul class="list-disc pl-5 space-y-1.5 text-slate-700">
+                                    <li><strong>Nikmat Jasmani (Fisik):</strong> Tubuh yang sehat, mata untuk melihat, telinga untuk mendengar, udara bersih untuk bernapas, serta makanan dan minuman untuk menghilangkan rasa lapar dan dahaga.</li>
+                                    <li><strong>Nikmat Rohani (Batin):</strong> Nikmat iman dan Islam, akal pikiran yang cerdas untuk belajar, ketenangan hati, serta rasa kasih sayang dalam keluarga.</li>
+                                    <li><strong>Nikmat Rezeki & Kesempatan:</strong> Tempat tinggal yang nyaman, pakaian yang layak, orang tua yang menyayangi, serta kesempatan menuntut ilmu di madrasah.</li>
+                                    <li><strong>Nikmat Waktu (Pengayaan):</strong> Kesempatan hidup dan waktu luang yang harus diisi dengan kegiatan bermanfaat agar tidak merugi.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Tiga Cara Mewujudkan Rasa Syukur',
+                                content: `<div class="grid sm:grid-cols-3 gap-3 my-2">
+                                    <div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl">
+                                        <div class="font-bold text-emerald-800 mb-1">a. Syukur dengan Hati</div>
+                                        <p class="text-sm text-slate-700">Meyakini sepenuhnya bahwa semua kenikmatan berasal dari Allah SWT semata, bukan semata-mata karena kehebatan diri sendiri, sehingga hati merasa tenang dan tidak sombong.</p>
+                                    </div>
+                                    <div class="bg-gold-50/70 border border-gold-200 p-4 rounded-xl">
+                                        <div class="font-bold text-gold-800 mb-1">b. Syukur dengan Lisan</div>
+                                        <p class="text-sm text-slate-700">Memuji Allah dengan mengucapkan kalimat tahmid: <strong>Alhamdulillahi Rabbil 'Alamin</strong> ketika meraih prestasi, sembuh dari sakit, atau mendapat rezeki.</p>
+                                    </div>
+                                    <div class="bg-teal-50/70 border border-teal-200 p-4 rounded-xl">
+                                        <div class="font-bold text-teal-800 mb-1">c. Syukur dengan Perbuatan</div>
+                                        <p class="text-sm text-slate-700">Rajin beribadah (salat dan mengaji), menggunakan anggota tubuh dan harta untuk kebaikan, bersedekah, serta tidak menyia-nyiakan nikmat.</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Janji Allah bagi Orang yang Bersyukur',
+                                isEnrichment: true,
+                                content: `<p class="mb-2">Dalam Al-Qur'an Surah Ibrahim ayat 7, Allah SWT berjanji akan menambah nikmat kepada hamba-Nya yang pandai bersyukur, dan sebaliknya memberi azab yang pedih bagi mereka yang kufur nikmat.</p>
+                                <div class="bg-white p-4 rounded-xl border border-slate-200 text-center my-2">
+                                    <p class="arabic-text text-2xl text-emerald-900 font-bold mb-1">لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ ۖ وَلَئِنْ كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ</p>
+                                    <p class="text-xs italic text-slate-500 mb-1">"La'in syakartum la'aziidannakum wa la'in kafartum inna 'adzaabii lasyadiid."</p>
+                                    <p class="text-sm text-slate-700 font-medium">"Sesungguhnya jika kamu bersyukur, pasti Kami akan menambah (nikmat) kepadamu, dan jika kamu mengingkari (nikmat-Ku), maka sesungguhnya azab-Ku sangat pedih."</p>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Mengenal Keindahan Asmaul Husna',
+                        summary: 'Mempelajari pengertian 99 Asmaul Husna serta mendalami makna Al-Halim, Al-Wahhab, dan sifat mulia Allah lainnya.',
+                        sections: [
+                            {
+                                heading: '1. Pengertian dan Jumlah Asmaul Husna',
+                                content: `<p><strong>Asmaul Husna</strong> berasal dari bahasa Arab yang berarti <em>nama-nama Allah SWT yang indah dan baik</em>. Nama-nama tersebut mencerminkan kesempurnaan sifat-sifat Allah yang tiada tandingannya. Dalam ajaran Islam, jumlah Asmaul Husna yang dikenal adalah <strong>99 nama</strong>. Umat Islam dianjurkan untuk menghafal, memahami maknanya, berdoa dengannya, serta meneladani sifat-sifat tersebut dalam perilaku sehari-hari.</p>`
+                            },
+                            {
+                                heading: '2. Mendalami Al-Halim dan Al-Wahhab',
+                                content: `<div class="space-y-4">
+                                    <div class="border-l-4 border-emerald-600 pl-4 py-1">
+                                        <h4 class="font-bold text-lg text-emerald-900">A. Al-Halim (الْحَلِيمُ) — Allah Maha Penyantun</h4>
+                                        <p class="text-sm text-slate-700 mt-1"><strong>Al-Halim</strong> artinya Allah Maha Penyantun lagi Maha Penyabar. Meskipun manusia sering melakukan kesalahan dan dosa, Allah tidak langsung menghukum mereka saat itu juga, melainkan memberi waktu dan kesempatan agar manusia bertaubat dan memperbaiki diri.</p>
+                                        <p class="text-sm text-emerald-800 font-medium mt-1.5">Cara Meneladani Al-Halim: Tidak mudah marah ketika teman berbuat salah, bersikap sabar dan pemaaf, serta memberi kesempatan orang lain untuk memperbaiki kekeliruannya.</p>
+                                    </div>
+                                    <div class="border-l-4 border-gold-500 pl-4 py-1">
+                                        <h4 class="font-bold text-lg text-gold-900">B. Al-Wahhab (الْوَهَّابُ) — Allah Maha Pemberi</h4>
+                                        <p class="text-sm text-slate-700 mt-1"><strong>Al-Wahhab</strong> artinya Allah Maha Pemberi karunia. Allah memberikan segala kebutuhan makhluk-Nya secara terus-menerus, luas, dan tanpa mengharapkan imbalan atau balasan sedikit pun dari siapa pun.</p>
+                                        <p class="text-sm text-gold-800 font-medium mt-1.5">Cara Meneladani Al-Wahhab: Gemar berbagi dengan ikhlas tanpa pamrih, bersedekah kepada yang membutuhkan, serta berterima kasih saat menerima pemberian.</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Asmaul Husna Pendukung Lainnya',
+                                isEnrichment: true,
+                                content: `<p class="mb-2 text-sm">Selain Al-Halim dan Al-Wahhab, mari pelajari juga beberapa Asmaul Husna lainnya agar wawasan ketauhidan semakin luas:</p>
+                                <div class="grid sm:grid-cols-2 gap-2.5 text-sm">
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>Ar-Rahman (الرَّحْمٰنُ):</strong> Maha Pengasih kepada seluruh makhluk di dunia.</div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>Ar-Rahim (الرَّحِيمُ):</strong> Maha Penyayang khusus bagi orang beriman di akhirat.</div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>Al-Malik (الْمَلِكُ):</strong> Maha Merajai seluruh alam semesta.</div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200"><strong>Al-Khaliq (الْخَالِقُ):</strong> Maha Pencipta segala sesuatu dari tiada menjadi ada.</div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Akhlak Terpuji: Perilaku Taat dan Patuh',
+                        summary: 'Membiasakan sikap patuh terhadap aturan agama, berbakti kepada orang tua, dan menghormati guru.',
+                        sections: [
+                            {
+                                heading: '1. Makna Perilaku Taat',
+                                content: `<p><strong>Taat</strong> berarti patuh, tunduk, dan setia melaksanakan aturan atau perintah yang baik serta menjauhi larangan. Dalam Islam, ketaatan tertinggi adalah taat kepada Allah SWT dan Rasulullah SAW, yang kemudian diwujudkan dengan menaati kedua orang tua, guru, dan aturan yang berlaku di masyarakat selama tidak bertentangan dengan syariat Islam.</p>`
+                            },
+                            {
+                                heading: '2. Taat kepada Orang Tua (Birrul Walidain)',
+                                content: `<p class="mb-2">Orang tua adalah sosok yang telah merawat, menyayangi, bekerja keras memenuhi kebutuhan keluarga, dan mendidik kita sejak kecil. Berbakti kepada orang tua disebut <em>Birrul Walidain</em>.</p>
+                                <p class="font-semibold text-sm text-emerald-800 mb-1">Contoh Perilaku Taat kepada Orang Tua:</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700">
+                                    <li>Mendengarkan nasihat ayah dan ibu dengan penuh perhatian tanpa membantah.</li>
+                                    <li>Segera melaksanakan perintah baik orang tua (seperti merapikan mainan atau membantu pekerjaan rumah).</li>
+                                    <li>Berbicara dengan bahasa yang halus, sopan, dan tidak membentak.</li>
+                                    <li>Mendoakan kedua orang tua setiap selesai melaksanakan salat fardu.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '3. Taat dan Hormat kepada Guru',
+                                content: `<p class="mb-2">Guru adalah orang tua kita di sekolah yang membimbing dan mengajarkan berbagai ilmu pengetahuan agar kita menjadi anak yang cerdas dan berakhlak mulia.</p>
+                                <p class="font-semibold text-sm text-emerald-800 mb-1">Contoh Perilaku Taat kepada Guru:</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700">
+                                    <li>Memperhatikan penjelasan guru saat pembelajaran berlangsung dan tidak berbicara sendiri.</li>
+                                    <li>Mengerjakan tugas dan latihan yang diberikan guru dengan tertib dan sungguh-sungguh.</li>
+                                    <li>Mengucapkan salam, menyapa dengan ramah, dan berbicara sopan saat bertemu guru.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Adab kepada Saudara dan Sesama',
+                                isEnrichment: true,
+                                content: `<p class="text-sm">Selain kepada orang tua dan guru, akhlak terpuji juga diterapkan kepada sesama: menghormati kakak dan orang yang lebih tua, menyayangi adik dan yang lebih muda, serta menjaga kerukunan dengan teman sebaya di lingkungan rumah maupun madrasah.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 4',
+                        title: 'Kisah Teladan Nabi Ibrahim a.s.',
+                        summary: 'Meneladani keberanian, keteguhan iman, kesabaran, dan kebijaksanaan Nabi Ibrahim a.s.',
+                        sections: [
+                            {
+                                heading: '1. Gelar Ulul Azmi dan Latar Belakang Nabi Ibrahim a.s.',
+                                content: `<p class="mb-2">Nabi Ibrahim a.s. adalah salah satu nabi dan rasul pilihan Allah SWT yang mendapat gelar <strong>Ulul Azmi</strong>, yaitu golongan rasul yang memiliki keteguhan hati, kesabaran, dan ketabahan luar biasa dalam menghadapi berbagai cobaan berat saat berdakwah.</p>
+                                <p class="text-sm bg-emerald-50 p-3 rounded-xl border border-emerald-200 text-emerald-900"><strong>Pengayaan 5 Rasul Ulul Azmi:</strong> (1) Nabi Nuh a.s., (2) Nabi Ibrahim a.s., (3) Nabi Musa a.s., (4) Nabi Isa a.s., dan (5) Nabi Muhammad SAW (dapat disingkat <em>N-I-M-I-M</em>).</p>`
+                            },
+                            {
+                                heading: '2. Keteguhan Iman Menghadapi Masyarakat dan Raja Namrud',
+                                content: `<p class="mb-2">Sejak muda di negeri Babilonia, Nabi Ibrahim a.s. hidup di tengah masyarakat yang menyembah patung berhala (bahkan ayahnya sendiri, Azar, adalah pembuat patung). Namun dengan akal sehat dan hidayah Allah, beliau menolak menyembah berhala karena meyakini hanya Allah SWT yang berhak disembah.</p>
+                                <p class="mb-2">Dakwah Nabi Ibrahim a.s. ditentang keras oleh penguasa Babilonia yang sangat sombong, kejam, dan zalim bernama <strong>Raja Namrud</strong>. Raja Namrud merasa memiliki kekuasaan besar dan tidak mau menerima kebenaran. Ketika Nabi Ibrahim a.s. menghancurkan berhala-berhala untuk menyadarkan kaumnya, Raja Namrud menghukum beliau dengan membakarnya di dalam kobaran api yang sangat besar. Atas izin Allah SWT, api tersebut menjadi dingin dan menyelamatkan Nabi Ibrahim a.s.</p>`
+                            },
+                            {
+                                heading: '3. Akhlak Mulia Nabi Ibrahim a.s. yang Patut Diteladani',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Teguh Pendirian dalam Kebenaran:</strong> Tetap mempertahankan keimanan kepada Allah SWT meskipun mendapat ancaman berat.</li>
+                                    <li><strong>Sabar dan Tabah:</strong> Tidak mudah putus asa saat menghadapi ujian dan penolakan dari kaumnya.</li>
+                                    <li><strong>Taat kepada Allah SWT:</strong> Selalu menjalankan perintah Allah dengan ikhlas dan menjauhi larangan-Nya.</li>
+                                    <li><strong>Bijaksana dalam Berdakwah:</strong> Menyampaikan kebenaran dengan cara yang baik, santun, dan logis saat menghadapi perbedaan pendapat.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Keteladanan Keluarga Nabi Ibrahim a.s.',
+                                isEnrichment: true,
+                                content: `<p class="text-sm">Ketakwaan Nabi Ibrahim a.s. juga diwariskan kepada keluarganya, yakni Siti Hajar dan putranya Nabi Ismail a.s. Kisah ketaatan mereka dalam menjalankan perintah Allah menjadi dasar pelaksanaan ibadah haji dan ibadah kurban yang diperingati umat Islam setiap bulan Dzulhijjah.</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Ketika seorang siswa berhasil meraih juara kelas, ia mengucapkan kalimat tahmid serta semakin rajin belajar dan membantu temannya. Perilaku tersebut menunjukkan wujud syukur melalui ....',
+                        options: ['Hati dan angan-angan saja', 'Lisan dan perbuatan nyata', 'Pamer kepada teman-teman'],
+                        answer: 1,
+                        explanation: 'Mengucapkan kalimat tahmid (Alhamdulillah) adalah syukur lisan, sedangkan menggunakan kepandaian untuk kebaikan adalah syukur perbuatan.'
+                    },
+                    {
+                        q: 'Allah SWT tidak langsung menurunkan azab ketika hamba-Nya berbuat khilaf, melainkan memberi kesempatan untuk bertaubat. Sifat ini mencerminkan Asmaul Husna ....',
+                        options: ['Al-Khaliq', 'Al-Malik', 'Al-Halim'],
+                        answer: 2,
+                        explanation: 'Al-Halim berarti Allah Maha Penyantun dan Maha Penyabar yang memberi kesempatan hamba-Nya memperbaiki diri.'
+                    },
+                    {
+                        q: 'Di bawah ini yang termasuk kelompok Rasul Ulul Azmi selain Nabi Ibrahim a.s. adalah ....',
+                        options: ['Nabi Nuh a.s. dan Nabi Musa a.s.', 'Nabi Adam a.s. dan Nabi Idris a.s.', 'Nabi Sulaiman a.s. dan Nabi Daud a.s.'],
+                        answer: 0,
+                        explanation: 'Lima Rasul Ulul Azmi adalah Nabi Nuh, Nabi Ibrahim, Nabi Musa, Nabi Isa, dan Nabi Muhammad SAW.'
+                    }
+                ]
+            },
+
+            // 2. FIKIH KELAS 3
+            {
+                id: 'fikih-3',
+                grade: '3',
+                title: 'Fikih',
+                gradeLabel: 'Kelas 3 MI',
+                icon: 'moon-star',
+                color: 'teal',
+                description: 'Mempelajari tata cara dan keutamaan Salat Sunah Rawatib, keringanan salat bagi musafir (Jamak dan Qashar), serta tuntunan salat bagi orang yang sedang sakit.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Salat Sunah Rawatib',
+                        summary: 'Memahami pengertian, pembagian waktu, hukum, hikmah, dan niat salat sunah yang mengiringi salat fardu.',
+                        sections: [
+                            {
+                                heading: '1. Pengertian dan Pembagian Waktu Salat Rawatib',
+                                content: `<p class="mb-3"><strong>Salat Sunah Rawatib</strong> adalah salat sunah yang dikerjakan mengiringi salat fardu lima waktu, baik sebelum maupun sesudahnya. Hikmah utama salat rawatib adalah untuk <strong>melengkapi dan menyempurnakan kekurangan</strong> yang mungkin terjadi saat kita melaksanakan salat fardu.</p>
+                                <div class="grid sm:grid-cols-2 gap-3">
+                                    <div class="bg-teal-50/70 border border-teal-200 p-4 rounded-xl">
+                                        <div class="font-bold text-teal-900 mb-1">Salat Rawatib Qabliyah</div>
+                                        <p class="text-sm text-slate-700">Salat sunah yang dikerjakan <strong>sebelum</strong> salat fardu dilaksanakan (setelah masuk waktu salat/azan).</p>
+                                    </div>
+                                    <div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl">
+                                        <div class="font-bold text-emerald-900 mb-1">Salat Rawatib Ba'diyah</div>
+                                        <p class="text-sm text-slate-700">Salat sunah yang dikerjakan <strong>sesudah</strong> salat fardu selesai dilaksanakan.</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Rawatib Mu\'akkad dan Ghairu Mu\'akkad',
+                                content: `<p class="mb-3">Berdasarkan tingkat anjurannya, salat rawatib terbagi menjadi dua:</p>
+                                <ul class="list-disc pl-5 space-y-2 text-sm text-slate-700 mb-4">
+                                    <li><strong>Rawatib Mu'akkad:</strong> Salat rawatib yang sangat dianjurkan dan hampir tidak pernah ditinggalkan oleh Rasulullah SAW. Jumlah utamanya adalah <strong>10 rakaat</strong> (atau 12 rakaat jika Qabliyah Dzuhur dikerjakan 4 rakaat). Salat sunah paling utama adalah <strong>2 rakaat Qabliyah Subuh</strong> yang nilainya lebih baik daripada dunia dan seisinya.</li>
+                                    <li><strong>Rawatib Ghairu Mu'akkad:</strong> Salat rawatib yang dianjurkan namun tidak sekuat mu'akkad, seperti 4 rakaat Qabliyah Ashar, 2 rakaat Qabliyah Maghrib, dan 2 rakaat Qabliyah Isya.</li>
+                                    <li><strong>Catatan Penting:</strong> Salat fardu yang <strong>tidak memiliki</strong> salat rawatib ba'diyah adalah <strong>Salat Subuh</strong> dan <strong>Salat Ashar</strong>.</li>
+                                </ul>
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="bg-slate-100 text-slate-700 font-bold">
+                                            <tr>
+                                                <th class="px-4 py-2.5">Salat Fardu</th>
+                                                <th class="px-4 py-2.5">Qabliyah (Sebelum)</th>
+                                                <th class="px-4 py-2.5">Ba'diyah (Sesudah)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200">
+                                            <tr><td class="px-4 py-2 font-medium">Subuh</td><td class="px-4 py-2 text-emerald-700 font-semibold">2 Rakaat (Mu'akkad)</td><td class="px-4 py-2 text-slate-400">Tidak ada</td></tr>
+                                            <tr><td class="px-4 py-2 font-medium">Dzuhur</td><td class="px-4 py-2 text-emerald-700 font-semibold">2 atau 4 Rakaat (Mu'akkad)</td><td class="px-4 py-2 text-emerald-700 font-semibold">2 Rakaat (Mu'akkad)</td></tr>
+                                            <tr><td class="px-4 py-2 font-medium">Ashar</td><td class="px-4 py-2 text-slate-600">4 Rakaat (Ghairu Mu'akkad)</td><td class="px-4 py-2 text-slate-400">Tidak ada</td></tr>
+                                            <tr><td class="px-4 py-2 font-medium">Maghrib</td><td class="px-4 py-2 text-slate-600">2 Rakaat (Ghairu Mu'akkad)</td><td class="px-4 py-2 text-emerald-700 font-semibold">2 Rakaat (Mu'akkad)</td></tr>
+                                            <tr><td class="px-4 py-2 font-medium">Isya</td><td class="px-4 py-2 text-slate-600">2 Rakaat (Ghairu Mu'akkad)</td><td class="px-4 py-2 text-emerald-700 font-semibold">2 Rakaat (Mu'akkad)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Lafaz Niat Salat Sunah Qabliyah Subuh & Hikmah Salat di Rumah',
+                                content: `<div class="bg-emerald-50/60 border border-emerald-200 p-4 rounded-xl mb-3 text-center">
+                                    <p class="arabic-text text-2xl text-emerald-950 font-bold mb-1">أُصَلِّي سُنَّةَ الصُّبْحِ رَكْعَتَيْنِ قَبْلِيَّةً لِلّٰهِ تَعَالَى</p>
+                                    <p class="text-xs italic text-slate-600 mb-1">Ushalli sunnatash-shubhi rak'ataini qabliyyatan lillāhi ta'ālā.</p>
+                                    <p class="text-sm text-slate-800 font-medium">"Aku berniat salat sunah Subuh dua rakaat sebelum Subuh karena Allah Ta'ala."</p>
+                                </div>
+                                <p class="text-sm text-slate-700">Rasulullah SAW menganjurkan agar salat sunah rawatib dikerjakan di <strong>rumah</strong> agar rumah tidak sepi seperti kuburan, mendatangkan keberkahan dan cahaya ibadah di rumah, menghindari sifat riya (pamer), serta memotivasi anggota keluarga untuk gemar beribadah.</p>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Salat Sunah Harian Lainnya',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Selain salat rawatib, umat Islam juga dianjurkan membiasakan <strong>Salat Dhuha</strong> pada pagi hari sebagai bentuk sedekah atas persendian tubuh, serta <strong>Salat Witir</strong> dengan jumlah rakaat ganjil sebagai penutup salat malam.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Keringanan Salat bagi Musafir: Jamak & Qashar',
+                        summary: 'Memahami konsep rukhshah dalam perjalanan jauh beserta ketentuan menggabungkan dan meringkas salat fardu.',
+                        sections: [
+                            {
+                                heading: '1. Pengertian Rukhshah dan Musafir',
+                                content: `<p><strong>Rukhshah</strong> adalah keringanan atau kemudahan yang diberikan oleh Allah SWT dalam melaksanakan ibadah karena adanya sebab atau uzur tertentu yang dibenarkan syariat, seperti sakit atau sedang dalam perjalanan jauh (safar). Orang yang sedang melakukan perjalanan jauh disebut <strong>musafir</strong>.</p>`
+                            },
+                            {
+                                heading: '2. Salat Jamak (Menggabungkan Dua Salat)',
+                                content: `<p class="mb-2"><strong>Salat Jamak</strong> adalah menggabungkan dua salat fardu dan mengerjakannya dalam satu waktu. Pasangan salat yang boleh dijamak hanyalah <strong>Dzuhur dengan Ashar</strong>, serta <strong>Maghrib dengan Isya</strong>. Salat Subuh tidak dapat dijamak dengan salat lainnya.</p>
+                                <div class="grid sm:grid-cols-2 gap-3 my-2">
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <div class="font-bold text-emerald-800 mb-1">Jamak Taqdim</div>
+                                        <p class="text-sm text-slate-700">Menggabungkan dua salat fardu dan mengerjakannya pada <strong>waktu salat yang pertama</strong> (misalnya: mengerjakan salat Dzuhur dan Ashar di waktu Dzuhur).</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <div class="font-bold text-emerald-800 mb-1">Jamak Ta'khir</div>
+                                        <p class="text-sm text-slate-700">Menggabungkan dua salat fardu dan mengerjakannya pada <strong>waktu salat yang kedua/terakhir</strong> (misalnya: mengerjakan salat Maghrib dan Isya di waktu Isya).</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Salat Qashar (Meringkas Rakaat Salat)',
+                                content: `<p class="mb-2"><strong>Salat Qashar</strong> adalah keringanan dengan cara meringkas jumlah rakaat salat fardu yang semula 4 rakaat menjadi <strong>2 rakaat</strong>.</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Salat yang boleh diqashar:</strong> Dzuhur, Ashar, dan Isya (masing-masing menjadi 2 rakaat).</li>
+                                    <li><strong>Salat yang tidak boleh diqashar:</strong> Subuh (2 rakaat) dan Maghrib (3 rakaat).</li>
+                                    <li><strong>Syarat diperbolehkannya Qashar:</strong> (1) Perjalanan bertujuan baik/mubah (bukan untuk maksiat), (2) Jarak perjalanan mencapai batas minimal safar (sekitar ±81 km atau lebih), (3) Sudah keluar dari batas wilayah tempat tinggal, dan (4) Tidak berniat menetap selamanya di tempat tujuan.</li>
+                                    <li><strong>Jamak sekaligus Qashar:</strong> Musafir dapat menggabungkan kedua keringanan ini, misalnya mengerjakan salat Dzuhur 2 rakaat dan Ashar 2 rakaat secara berurutan pada waktu Dzuhur (Jamak Taqdim Qashar). Jika salat pertama sudah dikerjakan pada waktunya, maka di waktu berikutnya cukup diqashar saja tanpa jamak.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Adab Safar dalam Islam',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Sebelum berangkat safar, seorang muslim dianjurkan berpamitan kepada keluarga, membaca doa keluar rumah dan doa naik kendaraan, menjaga kebersihan selama perjalanan, serta tetap menjaga kewajiban salat lima waktu di mana pun berada.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Tata Cara Salat bagi Orang yang Sakit',
+                        summary: 'Memahami bahwa kewajiban salat tidak gugur selama akal masih sadar, serta cara pelaksanaannya sesuai kemampuan.',
+                        sections: [
+                            {
+                                heading: '1. Urutan Kemampuan Gerakan Salat Orang Sakit',
+                                content: `<p class="mb-3">Salat fardu wajib dilaksanakan oleh setiap muslim selama akalnya masih sehat. Jika seseorang sedang sakit sehingga tidak mampu berdiri tegak, Islam memberikan kemudahan bertahap sesuai kemampuannya:</p>
+                                <ol class="list-decimal pl-5 space-y-2 text-sm text-slate-700">
+                                    <li><strong>Salat dengan Berdiri:</strong> Wajib berdiri jika masih mampu.</li>
+                                    <li><strong>Salat dengan Duduk:</strong> Jika tidak mampu berdiri, boleh salat sambil duduk (duduk iftirasy atau bersila) dengan membungkukkan badan saat rukuk dan sujud.</li>
+                                    <li><strong>Salat dengan Berbaring Miring:</strong> Jika tidak mampu duduk, salat dilakukan sambil berbaring miring di atas lambung kanan dengan wajah dan dada menghadap ke arah kiblat.</li>
+                                    <li><strong>Salat dengan Berbaring Telentang:</strong> Jika tidak mampu miring, salat dilakukan sambil berbaring telentang dengan kedua kaki diarahkan ke kiblat dan kepala sedikit ditinggikan dengan bantal.</li>
+                                    <li><strong>Menggunakan Isyarat:</strong> Jika tidak mampu melakukan gerakan rukuk dan sujud secara sempurna, gerakan dilakukan dengan <strong>isyarat anggota tubuh yang masih mampu</strong> (seperti anggukan kepala atau kedipan mata), atau cukup berniat dan membaca bacaan salat di dalam hati jika seluruh tubuh tidak bisa digerakkan.</li>
+                                </ol>`
+                            },
+                            {
+                                heading: '2. Keringanan Bersuci dan Waktu Salat bagi Orang Sakit',
+                                content: `<ul class="list-disc pl-5 space-y-1.5 text-sm text-slate-700">
+                                    <li><strong>Tayamum sebagai Pengganti Wudhu:</strong> Apabila orang sakit tidak mampu menggunakan air atau penggunaan air dapat memperparah penyakitnya, ia diperbolehkan bersuci dengan <strong>tayamum menggunakan debu yang suci</strong>.</li>
+                                    <li><strong>Menjamak Salat karena Sakit:</strong> Pasien yang menjalani perawatan intensif atau kesulitan mengerjakan setiap salat tepat pada waktunya diperbolehkan menjamak salat (seperti Dzuhur dengan Ashar) guna menghindari kesulitan berat (<em>masyaqqah</em>).</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Adab Menjenguk Orang Sakit',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Ketika menjenguk teman atau kerabat yang sakit, kita dianjurkan mendoakan kesembuhannya (<em>Syafakallah/Syafakillah</em>), memberikan semangat agar tetap sabar, serta mengingatkan dan membantunya agar tetap dapat beribadah dengan nyaman.</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Salat fardu yang sama sekali tidak memiliki salat sunah rawatib setelahnya (ba\'diyah) adalah ....',
+                        options: ['Dzuhur dan Maghrib', 'Subuh dan Ashar', 'Maghrib dan Isya'],
+                        answer: 1,
+                        explanation: 'Setelah salat Subuh dan Ashar tidak disyariatkan salat sunah rawatib ba\'diyah.'
+                    },
+                    {
+                        q: 'Dalam perjalanan jauh sejauh 150 km, Ahmad mengerjakan salat Maghrib 3 rakaat dan salat Isya 2 rakaat pada waktu Isya. Praktik ibadah yang dilakukan Ahmad disebut ....',
+                        options: ['Jamak Taqdim dan Qashar', 'Jamak Ta\'khir dan Qashar Isya', 'Qashar seluruh salat'],
+                        answer: 1,
+                        explanation: 'Dikerjakan di waktu salat kedua (Isya) disebut Jamak Ta\'khir, dan meringkas Isya menjadi 2 rakaat (sementara Maghrib tetap 3 rakaat) disebut Qashar.'
+                    },
+                    {
+                        q: 'Apabila seorang pasien tidak mampu berdiri maupun duduk saat salat, posisi tubuh yang tepat adalah ....',
+                        options: ['Berbaring menghadap kiblat dan rukuk menggunakan isyarat tubuh yang mampu', 'Menunda salat hingga sembuh total', 'Mengganti salat dengan membayar fidyah'],
+                        answer: 0,
+                        explanation: 'Kewajiban salat tidak gugur selama akal sadar; pasien dapat berbaring menghadap kiblat dan berisyarat sesuai kemampuan.'
+                    }
+                ]
+            },
+
+            // 3. AL-QUR'AN HADITS KELAS 3
+            {
+                id: 'qurdis-3',
+                grade: '3',
+                title: 'Al-Qur\'an Hadits',
+                gradeLabel: 'Kelas 3 MI',
+                icon: 'book-open',
+                color: 'emerald',
+                description: 'Mempelajari kandungan Surah Al-Fatihah, Al-Ikhlas, Al-Falaq, dan An-Nas, menguasai hukum bacaan Qalqalah Sughra dan Kubra, serta memahami keutamaan dan tata cara salat berjamaah.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Surah-Surah Pendek Pilihan (Al-Fatihah, Al-Ikhlas, Al-Falaq, An-Nas)',
+                        summary: 'Memahami ayat, terjemahan, urutan surah, julukan khusus, serta pesan pokok ajaran dalam empat surah penting.',
+                        sections: [
+                            {
+                                heading: '1. Surah Al-Fatihah (Pembuka Al-Qur\'an)',
+                                content: `<p class="text-sm text-slate-700 mb-2">Surah <strong>Al-Fatihah</strong> menempati urutan <strong>ke-1</strong> dalam susunan Al-Qur'an dan terdiri atas <strong>7 ayat</strong>. Surah ini wajib dibaca dalam setiap rakaat salat. Karena kedudukannya yang agung sebagai induk isi Al-Qur'an, Al-Fatihah dijuluki <strong>Ummul Qur'an</strong> atau <strong>Ummul Kitab</strong>.</p>`
+                            },
+                            {
+                                heading: '2. Surah Al-Ikhlas (Memurnikan Keesaan Allah)',
+                                content: `<p class="text-sm text-slate-700 mb-3">Surah Al-Ikhlas terdiri atas 4 ayat yang menegaskan pokok ajaran tauhid bahwa Allah SWT Maha Esa, tempat bergantung segala sesuatu, tidak beranak dan tidak diperanakkan, serta mengajarkan kita untuk senantiasa <strong>ikhlas</strong> dalam segala amal perbuatan.</p>
+                                <div class="bg-emerald-50/60 border border-emerald-200 rounded-xl p-4 space-y-2.5">
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-emerald-200/70 pb-2">
+                                        <span class="text-xs font-bold text-emerald-700">Ayat 1</span>
+                                        <span class="arabic-text text-2xl text-emerald-950 font-bold">قُلْ هُوَ اللّٰهُ اَحَدٌۚ</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-emerald-200/70 pb-2">
+                                        <span class="text-xs font-bold text-emerald-700">Ayat 2</span>
+                                        <span class="arabic-text text-2xl text-emerald-950 font-bold">اَللّٰهُ الصَّمَدُۚ</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-emerald-200/70 pb-2">
+                                        <span class="text-xs font-bold text-emerald-700">Ayat 3</span>
+                                        <span class="arabic-text text-2xl text-emerald-950 font-bold">لَمْ يَلِدْ وَلَمْ يُوْلَدْۙ</span>
+                                    </div>
+                                    <div class="flex flex-col sm:flex-row sm:items-center justify-between">
+                                        <span class="text-xs font-bold text-emerald-700">Ayat 4</span>
+                                        <span class="arabic-text text-2xl text-emerald-950 font-bold">وَلَمْ يَكُنْ لَّهٗ كُفُوًا اَحَدٌ</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Surah Al-Falaq dan An-Nas (Al-Mu\'awwidzatain)',
+                                content: `<p class="text-sm text-slate-700 mb-3">Surah Al-Falaq (5 ayat) dan Surah An-Nas (6 ayat, urutan <strong>ke-114</strong> atau surah terakhir dalam Al-Qur'an) memiliki sebutan khusus yaitu <strong>Al-Mu'awwidzatain</strong> (dua surah perlindungan), karena keduanya mengajarkan manusia memohon perlindungan hanya kepada Allah SWT.</p>
+                                <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <h4 class="font-bold text-emerald-900 mb-1.5">Kandungan Surah Al-Falaq</h4>
+                                        <p class="text-slate-700 mb-2">Memohon perlindungan dari kejahatan makhluk-Nya (<span class="arabic-text text-lg">مِنْ شَرِّ مَا خَلَقَ</span>), kejahatan malam apabila telah gelap gulita (<span class="arabic-text text-lg">وَمِنْ شَرِّ غَاسِقٍ اِذَا وَقَبَ</span>), kejahatan penyihir, serta kejahatan pendengki apabila ia dengki (<span class="arabic-text text-lg">وَمِنْ شَرِّ حَاسِدٍ اِذَا حَسَدَ</span>).</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <h4 class="font-bold text-emerald-900 mb-1.5">Kandungan Surah An-Nas</h4>
+                                        <p class="text-slate-700 mb-2">Kata <strong>An-Nas</strong> artinya <em>manusia</em>. Surah ini mengajarkan memohon perlindungan kepada Tuhan manusia dari kejahatan <strong>bisikan setan</strong> yang bersembunyi, baik yang berasal dari golongan <strong>jin maupun manusia</strong>.</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Keutamaan Membaca Al-Mu\'awwidzatain',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Rasulullah SAW membiasakan membaca Surah Al-Ikhlas, Al-Falaq, dan An-Nas setiap selesai salat fardu serta sebelum tidur malam sebagai zikir penjagaan diri dari segala keburukan.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Ilmu Tajwid: Hukum Bacaan Qalqalah',
+                        summary: 'Mengenal huruf-huruf qalqalah dan membedakan cara membaca Qalqalah Sughra dengan Qalqalah Kubra.',
+                        sections: [
+                            {
+                                heading: '1. Pengertian Qalqalah dan 5 Hurufnya',
+                                content: `<p class="mb-2"><strong>Qalqalah</strong> secara bahasa artinya <em>memantul</em>. Dalam ilmu tajwid, qalqalah adalah membunyikan huruf tertentu dengan suara pantulan yang jelas ketika huruf tersebut berharakat sukun (mati) atau dimatikan karena waqaf (berhenti).</p>
+                                <div class="bg-gold-50 border border-gold-200 p-4 rounded-xl text-center">
+                                    <p class="text-xs font-bold uppercase tracking-wider text-gold-700 mb-1">5 Huruf Qalqalah (Disingkat: قُطْبُ جَدٍ / Quthbu Jadin)</p>
+                                    <p class="arabic-text text-3xl font-bold text-slate-900 tracking-widest">ق — ط — ب — ج — د</p>
+                                    <p class="text-sm font-semibold text-slate-700 mt-1">Qaf (ق), Tha (ط), Ba (ب), Jim (ج), Dal (د)</p>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Pembagian Hukum Bacaan Qalqalah',
+                                content: `<div class="grid sm:grid-cols-2 gap-4">
+                                    <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+                                        <span class="inline-block px-2.5 py-0.5 bg-teal-100 text-teal-800 text-xs font-bold rounded-md mb-2">Pantulan Kecil / Ringan</span>
+                                        <h4 class="font-bold text-slate-900 mb-1">A. Qalqalah Sughra</h4>
+                                        <p class="text-sm text-slate-700 mb-2">Terjadi apabila huruf qalqalah berharakat <strong>sukun asli</strong> dan letaknya berada di <strong>tengah kata</strong> atau tengah bacaan.</p>
+                                        <p class="text-xs font-semibold text-slate-500">Contoh Lafaz:</p>
+                                        <p class="arabic-text text-xl text-emerald-900 font-bold">لَمْ يَلِدْ وَلَمْ يُوْلَدْ ۙ • يَدْخُلُوْنَ • اِبْرٰهِيْمَ</p>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-4 rounded-xl shadow-sm">
+                                        <span class="inline-block px-2.5 py-0.5 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-md mb-2">Pantulan Besar / Kuat</span>
+                                        <h4 class="font-bold text-slate-900 mb-1">B. Qalqalah Kubra</h4>
+                                        <p class="text-sm text-slate-700 mb-2">Terjadi apabila huruf qalqalah berada di <strong>akhir kata atau akhir ayat</strong> dan dibaca sukun karena berhenti (<strong>waqaf</strong>).</p>
+                                        <p class="text-xs font-semibold text-slate-500">Contoh Lafaz:</p>
+                                        <p class="arabic-text text-xl text-emerald-900 font-bold">قُلْ هُوَ اللّٰهُ اَحَدٌ ۚ • مِنْ شَرِّ مَا خَلَقَ ۙ • اِذَا حَسَدَ</p>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Mengenal Ghunnah dalam Al-Qur\'an',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Selain Qalqalah, ketika membaca Surah An-Nas kita juga sering menjumpai huruf Nun bertasydid (<span class="arabic-text text-lg">النَّاسِ</span>). Hukum bacaannya adalah <strong>Ghunnah</strong>, yaitu dibaca mendengung dengan jelas selama dua ketukan.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Hadits Keutamaan dan Tata Cara Salat Berjamaah',
+                        summary: 'Memahami hadits keutamaan 27 derajat serta aturan posisi imam dan makmum dalam salat berjamaah.',
+                        sections: [
+                            {
+                                heading: '1. Hadits Keutamaan Salat Berjamaah (HR. Bukhari dan Muslim)',
+                                content: `<div class="bg-emerald-50/70 border border-emerald-200 p-5 rounded-xl text-center mb-3">
+                                    <p class="arabic-text text-2xl sm:text-3xl text-emerald-950 font-bold mb-2">صَلَاةُ الْجَمَاعَةِ أَفْضَلُ مِنْ صَلَاةِ الْفَذِّ بِسَبْعٍ وَعِشْرِينَ دَرَجَةً</p>
+                                    <p class="text-xs italic text-slate-600 mb-2">"Shalātul-jamā'ati afdhalu min shalātil-fadzdzī bisab'in wa 'isyrīna darajah."</p>
+                                    <p class="text-sm font-semibold text-slate-800">"Salat berjamaah itu lebih utama daripada salat sendirian dengan (pahala) dua puluh tujuh derajat." (HR. Bukhari dan Muslim)</p>
+                                </div>
+                                <p class="text-sm text-slate-700">Hukum melaksanakan salat fardu secara berjamaah bagi laki-laki yang tidak berhalangan adalah <strong>Sunah Mu'akkad</strong> (sunah yang sangat dianjurkan).</p>`
+                            },
+                            {
+                                heading: '2. Ketentuan dan Tata Cara Salat Berjamaah',
+                                content: `<ul class="list-disc pl-5 space-y-1.5 text-sm text-slate-700">
+                                    <li><strong>Jumlah Minimal:</strong> Salat berjamaah dilaksanakan minimal oleh <strong>2 orang</strong> (satu orang sebagai imam dan satu orang sebagai makmum).</li>
+                                    <li><strong>Tugas Makmum:</strong> Makmum wajib <strong>mengikuti</strong> gerakan imam dan <strong>tidak boleh mendahului</strong> gerakan salat imam.</li>
+                                    <li><strong>Posisi Makmum:</strong> Apabila makmum hanya satu orang (laki-laki), maka posisi berdirinya berada di sebelah <strong>kanan imam</strong> (agak mundur sedikit). Jika makmum dua orang atau lebih, mereka berbaris di belakang imam.</li>
+                                    <li><strong>Kerapian Shaf:</strong> Sebelum salat dimulai, jamaah hendaknya merapikan dan meluruskan <strong>shaf (barisan)</strong> agar salat semakin sempurna.</li>
+                                    <li><strong>Ketentuan Imam Perempuan:</strong> Seorang perempuan boleh menjadi imam khusus bagi makmum <strong>perempuan</strong> (dan anak-anak yang belum baligh), namun tidak boleh mengimami makmum laki-laki dewasa.</li>
+                                    <li><strong>Makmum Masbuk:</strong> Makmum yang datangnya terlambat sehingga tertinggal sebagian rukun atau rakaat bersama imam disebut <strong>makmum masbuk</strong> (ia tetap mengikuti gerakan imam lalu menyempurnakan kekurangan rakaatnya setelah imam salam).</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Hikmah Sosial Salat Berjamaah',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Salat berjamaah melatih kedisiplinan waktu, mempererat tali persaudaraan antarwarga, menumbuhkan rasa persamaan derajat di hadapan Allah SWT, serta membiasakan kepatuhan terhadap pemimpin yang baik.</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Dua surah dalam Al-Qur\'an yang dikenal dengan sebutan Al-Mu\'awwidzatain karena berisi permohonan perlindungan kepada Allah adalah ....',
+                        options: ['Al-Fatihah dan Al-Ikhlas', 'Al-Falaq dan An-Nas', 'Al-Ikhlas dan An-Nas'],
+                        answer: 1,
+                        explanation: 'Al-Falaq dan An-Nas disebut Al-Mu\'awwidzatain (dua surah perlindungan).'
+                    },
+                    {
+                        q: 'Pada lafaz "لَمْ يَلِدْ" (Lam yalid), huruf Dal berharakat sukun asli dan dibaca memantul. Bacaan ini termasuk hukum ....',
+                        options: ['Qalqalah Sughra', 'Qalqalah Kubra', 'Idgham Bighunnah'],
+                        answer: 0,
+                        explanation: 'Huruf Dal sukun asli yang berada di tengah bacaan (tidak berhenti) dibaca pantulan ringan yang disebut Qalqalah Sughra.'
+                    },
+                    {
+                        q: 'Jika kamu datang ke masjid dan imam sudah melakukan rukuk pada rakaat pertama, maka kamu disebut sebagai ....',
+                        options: ['Makmum muwafiq', 'Makmum masbuk', 'Imam rawatib'],
+                        answer: 1,
+                        explanation: 'Makmum yang datang terlambat sehingga tertinggal sebagian rukun/rakaat bersama imam disebut makmum masbuk.'
+                    }
+                ]
+            },
+
+            // 4. SKI KELAS 3
+            {
+                id: 'ski-3',
+                grade: '3',
+                title: 'Sejarah Kebudayaan Islam (SKI)',
+                gradeLabel: 'Kelas 3 MI',
+                icon: 'landmark',
+                color: 'amber',
+                description: 'Menelusuri kondisi masyarakat Arab sebelum Islam, peristiwa agung kelahiran Nabi Muhammad SAW pada Tahun Gajah, hingga masa pengasuhan dan masa remaja beliau.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Tradisi & Kepercayaan Masyarakat Arab Pra-Islam',
+                        summary: 'Mengenal asal-usul bangsa Arab, mata pencaharian, lembaga musyawarah, sifat positif & negatif zaman Jahiliyah, serta ragam kepercayaan mereka.',
+                        sections: [
+                            {
+                                heading: '1. Pembagian Bangsa Arab dan Kehidupan Sosialnya',
+                                content: `<p class="mb-2">Dalam sejarahnya, bangsa Arab terbagi menjadi tiga kelompok besar: <em>Al-'Arab al-Ba'idah</em> (bangsa Arab kuno yang telah punah), <em>Al-'Arab al-'Aribah</em> (bangsa Arab asli dari Yaman), dan <strong>Al-'Arab al-Musta'rabah</strong> yang berarti <strong>Suku Arab pendatang</strong> (keturunan Nabi Ismail a.s. yang menetap di Makkah, tempat berasalnya suku Quraisy).</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Mata Pencaharian:</strong> Karena kondisi alam yang sebagian besar berupa padang pasir, masyarakat Arab terampil dalam bidang <strong>perdagangan (berdagang)</strong>, beternak (kambing dan unta), serta bercocok tanam di daerah oasis yang subur seperti Thaif dan Yatsrib.</li>
+                                    <li><strong>Dewan Nasihat:</strong> Masyarakat Makkah memiliki tempat musyawarah para tokoh suku untuk membicarakan persoalan penting yang disebut Darun Nadwah atau dewan nasihat (<strong>mashura</strong>).</li>
+                                    <li><strong>Sifat Positif Bangsa Arab:</strong> Pemberani, menepati janji, sangat menghormati dan memuliakan tamu, serta memiliki daya hafal syair yang kuat.</li>
+                                    <li><strong>Kebiasaan Buruk Zaman Jahiliyah:</strong> Menyembah berhala, berjudi, meminum minuman keras (<em>khamr</em> — yang kala itu dianggap barang mewah lambang kekayaan), mengubur bayi perempuan hidup-hidup, merampok, serta mudah berperang dan sulit bersatu antarsuku.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Ragam Kepercayaan Masyarakat Arab Sebelum Islam',
+                                content: `<div class="grid sm:grid-cols-2 gap-3 text-sm">
+                                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                                        <div class="font-bold text-emerald-900">1. Tauhid (Agama Hanif)</div>
+                                        <p class="text-slate-700">Keyakinan menyembah <strong>satu Tuhan</strong> (Allah SWT) yang merupakan sisa ajaran Nabi Ibrahim a.s. dan Nabi Ismail a.s.</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                                        <div class="font-bold text-amber-900">2. Penyembah Berhala (Syirik/Politeisme)</div>
+                                        <p class="text-slate-700">Kepercayaan kepada lebih dari satu Tuhan dengan membuat patung sesembahan seperti Hubal, Latta, Uzza, dan <strong>Manat</strong>. Ka'bah pun saat itu dijadikan pusat penyembahan berhala.</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                                        <div class="font-bold text-amber-900">3. Penganut Majusi</div>
+                                        <p class="text-slate-700">Kelompok masyarakat (terutama di wilayah Persia dan sekitarnya) yang menjadikan <strong>api</strong> sebagai objek sesembahan.</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
+                                        <div class="font-bold text-amber-900">4. Animisme</div>
+                                        <p class="text-slate-700">Keyakinan terhadap adanya <strong>roh atau kekuatan gaib</strong> yang mendiami benda-benda tertentu seperti batu besar, pohon, atau bintang.</p>
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Kelahiran Nabi Muhammad SAW & Tahun Gajah',
+                        summary: 'Mempelajari silsilah mulia Rasulullah SAW, peristiwa penyerangan Ka\'bah oleh pasukan bergajah, dan keistimewaan kelahiran beliau.',
+                        sections: [
+                            {
+                                heading: '1. Peristiwa Tahun Gajah (\'Amul Fil)',
+                                content: `<p class="mb-2">Menjelang kelahiran Nabi Muhammad SAW pada tahun 571 Masehi, terjadi peristiwa besar yang menggemparkan jazirah Arab. Seorang penguasa dari Yaman bernama <strong>Raja Abrahah</strong> memimpin pasukan besar dengan membawa sejumlah gajah untuk menghancurkan Ka'bah di Makkah.</p>
+                                <p class="text-sm text-slate-700">Kakek Nabi Muhammad SAW, <strong>Abdul Muthalib</strong>, yang merupakan pemuka Quraisy sekaligus <strong>pengurus/pemelihara Ka'bah</strong>, berdoa memohon perlindungan kepada Allah SWT. Allah pun mengutus burung-burung <em>Ababil</em> yang menjatuhkan batu-batu panas dari tanah yang terbakar hingga pasukan bergajah tersebut hancur lebur. Peristiwa ini dikenang sebagai tahun <strong>penyerangan pasukan bergajah</strong> atau dalam bahasa Arab disebut <strong>'Amul Fil (Tahun Gajah)</strong>.</p>`
+                            },
+                            {
+                                heading: '2. Kelahiran, Pemberian Nama, dan Silsilah Nabi Muhammad SAW',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700 mb-3">
+                                    <li><strong>Waktu Kelahiran:</strong> Nabi Muhammad SAW lahir di Kota Makkah pada hari Senin, tanggal <strong>12 Rabiulawal</strong> Tahun Gajah. Ibunda beliau, <strong>Siti Aminah</strong>, merasakan masa kehamilan yang sangat ringan dan <strong>mudah</strong>.</li>
+                                    <li><strong>Arti Nama Muhammad:</strong> Kakek beliau, Abdul Muthalib, memberikan nama istimewa <strong>Muhammad</strong> yang memiliki arti <strong>"yang terpuji"</strong>. Kelahiran beliau menjadi tanda rahmat bagi <strong>seluruh alam</strong> serta awal perubahan untuk menghapuskan <strong>kedurhakaan</strong> zaman Jahiliyah.</li>
+                                    <li><strong>Kejadian Luar Biasa Saat Kelahiran:</strong> (1) Cahaya terang memancar dari tubuh beliau hingga menerangi negeri Syam (tanah di sekitar tempat kelahirannya menjadi <strong>terang/bercahaya</strong>), (2) Api sesembahan kaum Majusi di Persia yang menyala seribu tahun tiba-tiba padam, (3) Sebagian balkon Istana Kisra di Persia runtuh, (4) Danau Sawa di Persia mengering, dan (5) Terdengar suara gaib yang mengabarkan kelahiran nabi akhir zaman.</li>
+                                </ul>
+                                <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl">
+                                    <div class="font-bold text-amber-900 text-sm mb-1.5">Urutan Silsilah Nabi Muhammad SAW hingga Kilab:</div>
+                                    <p class="text-sm font-semibold text-slate-800">
+                                        1. Nabi Muhammad SAW &rarr; 2. Abdullah (ayah) &rarr; 3. Abdul Muthalib (kakek) &rarr; 4. Hasyim &rarr; 5. Abdu Manaf &rarr; 6. Qushay &rarr; 7. Kilab
+                                    </p>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Masa Kanak-Kanak & Pengasuhan Nabi Muhammad SAW',
+                        summary: 'Mengetahui kisah penyusuan di perkampungan Bani Sa\'ad serta pengasuhan beliau setelah menjadi yatim piatu.',
+                        sections: [
+                            {
+                                heading: '1. Penyusuan dan Pengasuhan di Bani Sa\'ad',
+                                content: `<p class="mb-2">Dalam tradisi masyarakat bangsawan Makkah, bayi yang baru lahir disusukan dan diasuh di pedesaan agar tumbuh sehat, kuat, dan fasih berbahasa Arab. Sebelum diasuh oleh Halimah, perempuan pertama yang menyusui Nabi Muhammad SAW selama beberapa hari adalah <strong>Tsuwaibah</strong> (budak Abu Lahab).</p>
+                                <p class="text-sm text-slate-700">Selanjutnya, bayi Muhammad SAW diasuh oleh <strong>Siti Halimah As-Sa'diyah</strong> dan dibawa ke perkampungan <strong>Bani Sa'ad</strong>. Awalnya masa pengasuhan direncanakan selama 2 tahun, namun kemudian <strong>bertambah menjadi 2 tahun lagi</strong> (total sekitar <strong>tiga hingga empat/lima tahun</strong>) karena keluarga Siti Halimah merasakan <strong>keberkahan yang luar biasa</strong> selama mengasuh beliau: air susu kambing menjadi melimpah ruah, ternak menjadi gemuk dan subur, serta kehidupan ekonomi keluarga menjadi jauh lebih makmur.</p>`
+                            },
+                            {
+                                heading: '2. Menjadi Yatim Piatu dan Diasuh Keluarga',
+                                content: `<p class="text-sm text-slate-700">Ayahanda Nabi (Abdullah) telah wafat sejak Nabi masih dalam kandungan. Pada usia 6 tahun, ibunda beliau (Siti Aminah) wafat di Abwa sepulang berziarah dari Madinah. Sepeninggal ibundanya, Nabi Muhammad SAW kecil diasuh dengan penuh kasih sayang oleh <strong>kakeknya, Abdul Muthalib</strong> hingga usia 8 tahun. Setelah Abdul Muthalib wafat, pengasuhan dilanjutkan oleh pamannya, <strong>Abu Thalib</strong>.</p>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 4',
+                        title: 'Masa Remaja Nabi Muhammad SAW',
+                        summary: 'Meneladani kemandirian Nabi dalam berdagang ke Syam, nasihat Pendeta Buhaira, hingga pernikahan dengan Siti Khadijah.',
+                        sections: [
+                            {
+                                heading: '1. Perjalanan Dagang ke Syam dan Nasihat Pendeta Buhaira',
+                                content: `<p class="mb-2">Memasuki usia remaja sekitar <strong>12 tahun</strong>, Nabi Muhammad SAW ikut bersama pamannya, Abu Thalib, melakukan perjalanan dagang ke negeri <strong>Syam</strong>. Di daerah Bushra, rombongan mereka bertemu dengan seorang pendeta Nasrani bernama <strong>Buhaira</strong>.</p>
+                                <p class="text-sm text-slate-700">Pendeta Buhaira menasihati Abu Thalib agar menjaga dan merawat Muhammad kecil dengan baik serta segera membawanya pulang, karena ia melihat <strong>tanda-tanda kenabian</strong> yang tertulis dalam kitab-kitab terdahulu: (1) adanya <strong>awan yang selalu menaungi</strong> beliau dari terik matahari, (2) <strong>pohon yang merunduk</strong> menaungi beliau saat berteduh, dan (3) tanda kenabian (<em>Khatamun Nubuwwah</em>) di antara kedua bahunya. Pendeta Buhaira khawatir jika <strong>orang-orang Yahudi</strong> mengetahui bahwa Muhammad adalah calon rasul terakhir, mereka akan berusaha mencelakai atau membunuhnya karena rasa dengki.</p>`
+                            },
+                            {
+                                heading: '2. Peristiwa Masa Muda dan Pernikahan',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Perang Fijar (Usia 15 Tahun):</strong> Nabi Muhammad SAW turut menyaksikan dan membantu paman-pamannya mengumpulkan anak panah dalam peperangan antarsuku Arab yang disebut <strong>Perang Fijar</strong>.</li>
+                                    <li><strong>Gelar Al-Amin & Pernikahan:</strong> Karena kejujuran dan amanahnya dalam berdagang, masyarakat Makkah memberi beliau gelar <em>Al-Amin</em> (yang dapat dipercaya). Pada <strong>usia 25 tahun</strong>, Nabi Muhammad SAW menikah dengan seorang saudagar wanita mulia bernama <strong>Siti Khadijah</strong>.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '3. Materi Pengayaan: Perjanjian Hilful Fudhul',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Pada masa mudanya, Nabi Muhammad SAW juga ikut serta dalam sumpah perjanjian mulia para pemuka Makkah yang disebut <strong>Hilful Fudhul</strong>, yaitu kesepakatan untuk membela setiap orang yang dizalimi di Kota Makkah tanpa memandang suku maupun status sosialnya.</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Keturunan Nabi Ismail a.s. yang menetap dan berkembang di Makkah dalam sejarah pembagian bangsa Arab dikenal sebagai ....',
+                        options: ['Al-\'Arab al-Ba\'idah', 'Al-\'Arab al-Musta\'rabah (Suku Arab pendatang)', 'Penganut Majusi'],
+                        answer: 1,
+                        explanation: 'Al-\'Arab al-Musta\'rabah adalah suku Arab pendatang yang berasal dari keturunan Nabi Ismail a.s.'
+                    },
+                    {
+                        q: 'Alasan utama keluarga Siti Halimah As-Sa\'diyah memohon agar waktu pengasuhan Nabi Muhammad SAW ditambah 2 tahun lagi adalah ....',
+                        options: ['Karena mereka melihat adanya keberkahan melimpah pada ternak dan kehidupan mereka', 'Karena Kota Makkah sedang dilanda perang besar', 'Karena Abdul Muthalib sedang bepergian jauh ke Syam'],
+                        answer: 0,
+                        explanation: 'Selama mengasuh Nabi Muhammad SAW, ternak mereka menjadi subur, susu melimpah, dan hidup mereka penuh berkah.'
+                    },
+                    {
+                        q: 'Pada usia 12 tahun, Nabi Muhammad SAW diajak pamannya Abu Thalib berdagang menuju negeri ....',
+                        options: ['Habasyah', 'Syam', 'Persia'],
+                        answer: 1,
+                        explanation: 'Abu Thalib mengajak Nabi Muhammad SAW berdagang ke negeri Syam pada usia 12 tahun.'
+                    }
+                ]
+            },
+
+            // 5. SKI KELAS 4
+            {
+                id: 'ski-4',
+                grade: '4',
+                title: 'Sejarah Kebudayaan Islam (SKI)',
+                gradeLabel: 'Kelas 4 MI',
+                icon: 'shield-check',
+                color: 'emerald',
+                description: 'Mempelajari strategi dakwah Nabi Muhammad SAW di Makkah, ketabahan para sahabat menghadapi siksaan, peristiwa Hijrah ke Habasyah, pemboikotan Quraisy, serta kasih sayang Rasulullah SAW.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Dakwah Nabi Muhammad SAW di Makkah',
+                        summary: 'Memahami tahapan dakwah secara sembunyi-sembunyi hingga dakwah terang-terangan beserta tantangan kaum Quraisy.',
+                        sections: [
+                            {
+                                heading: '1. Dakwah Sembunyi-Sembunyi (Sirriyah)',
+                                content: `<p class="mb-2">Pada awal kenabian, Nabi Muhammad SAW melakukan dakwah secara diam-diam/sembunyi-sembunyi selama kurang lebih tiga tahun dengan menjadikan rumah sahabat <strong>Arqam bin Abil Arqam</strong> sebagai pusat pembinaan.</p>
+                                <p class="text-sm text-slate-700">Alasan dakwah dilakukan secara sembunyi-sembunyi adalah <strong>agar tidak langsung ketahuan dan memicu reaksi keras dari orang-orang kafir Quraisy</strong> yang belum siap menerima ajaran baru, sekaligus untuk membina akidah para pemeluk Islam pertama (<em>Assabiqunal Awwalun</em>) secara bertahap.</p>`
+                            },
+                            {
+                                heading: '2. Dakwah Terang-Terangan (Jahriyah) dan Tantangan Abu Lahab',
+                                content: `<p class="mb-2">Setelah pengikut Islam semakin bertambah dan turun perintah Allah SWT dalam <strong>QS. Al-Hijr ayat 94</strong>, Rasulullah SAW mulai berdakwah secara terang-terangan dengan mengumpulkan penduduk Makkah di <strong>Bukit Safa</strong>.</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Permusuhan Abu Lahab dan Istrinya:</strong> Paman Nabi sendiri yang bernama <strong>Abu Lahab</strong> (yang berarti bara api) langsung menghina dan menentang dakwah Nabi di Bukit Safa. Kebencian Abu Lahab bukan karena Nabi berbohong (karena Nabi dikenal sebagai <em>Al-Amin</em>), melainkan murni karena <strong>kebenciannya terhadap ajaran Islam</strong>.</li>
+                                    <li><strong>Surah Al-Lahab:</strong> Allah menurunkan Surah Al-Lahab sebagai balasan atas kejahatan mereka. Dalam ayat ke-2 dijelaskan bahwa harta dan usahanya tidak berguna dan ia akan masuk ke dalam <strong>api yang menyala-nyala (berapi-api)</strong>. Sementara istrinya, <strong>Ummu Jamil</strong>, yang sering menebar kayu berduri di jalan Nabi, disebut sebagai <strong>pembawa kayu bakar</strong>. Akhir hidup Abu Lahab sangat tragis karena meninggal akibat <strong>penyakit kulit menular (kusta/lepra)</strong> setelah kekalahan Quraisy di Perang Badar, sedangkan Ummu Jamil <strong>meninggal tercekik tali kayu</strong> yang dibawanya sendiri.</li>
+                                    <li><strong>Godaan Utbah bin Rabiah:</strong> Pemuka Quraisy bernama Utbah bin Rabiah pernah membujuk Nabi dengan menawarkan harta berlimpah, takhta kerajaan, dan kesenangan duniawi agar Nabi berhenti berdakwah, namun Rasulullah SAW <strong>menolak tegas tawaran tersebut dan tetap melanjutkan dakwah</strong>.</li>
+                                </ul>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Ketabahan Para Sahabat Menghadapi Penindasan',
+                        summary: 'Meneladani perjuangan dan pengorbanan para sahabat yang mempertahankan keimanan di bawah tekanan kaum Quraisy.',
+                        sections: [
+                            {
+                                heading: '1. Kisah Keteguhan Iman Sahabat Utama & Kalangan Terhormat',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Utsman bin Affan:</strong> Diikat, dipukuli, dan dikurung di rumah tanpa diberi makan oleh pamannya, namun beliau menunjukkan <strong>ketabahan luar biasa dalam mempertahankan iman</strong>.</li>
+                                    <li><strong>Khalid bin Utbah:</strong> Disiksa dan dipenjara oleh ayahnya sendiri karena menolak kembali ke agama nenek moyang. Setelah berhasil melarikan diri dari penjara, ia <strong>tetap teguh mempertahankan keislamannya</strong>.</li>
+                                    <li><strong>Mus'ab bin Umair:</strong> Pemuda tampan dari keluarga bangsawan kaya yang diusir dari rumah dan kehilangan seluruh hak warisnya <strong>karena ia tetap mempertahankan keislamannya</strong>.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Perjuangan Sahabat dari Kalangan Budak dan Kaum Lemah',
+                                content: `<div class="space-y-3 text-sm">
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <h4 class="font-bold text-emerald-900">Bilal bin Rabah</h4>
+                                        <p class="text-slate-700 mt-1">Seorang budak berkulit hitam dari Habasyah yang disiksa kejam oleh tuannya, Umayyah bin Khalaf, dengan dijemur di bawah terik matahari dan dadanya ditindih batu besar. Meski begitu, Bilal terus mengucapkan kata <strong>"Ahad"</strong> yang berarti <strong>Allah Maha Esa</strong>. Akhirnya, sahabat <strong>Abu Bakar Ash-Shiddiq datang membeli dan memerdekakannya</strong>.</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <h4 class="font-bold text-emerald-900">Keluarga Yasir (Yasir, Sumayyah, Ammar, Abdullah)</h4>
+                                        <p class="text-slate-700 mt-1">Keluarga muslim pertama dari kalangan budak yang disiksa keji oleh Abu Jahal. Yasir dan Sumayyah wafat sebagai syuhada pertama dalam Islam. Putranya, <strong>Ammar bin Yasir</strong>, dilepaskan setelah dipaksa mengucapkan kalimat kekufuran dengan mulutnya. Ammar <strong>merasa sangat bersalah dan segera menemui Nabi Muhammad SAW</strong>. Allah pun menurunkan <strong>Surah An-Nahl ayat 106</strong> yang menegaskan bahwa <strong>orang yang dipaksa kafir namun hatinya tetap tenang dalam beriman tidaklah berdosa (tidak diazab)</strong>.</p>
+                                    </div>
+                                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl">
+                                        <h4 class="font-bold text-emerald-900">Khabbab bin Al-Arat & Amir bin Fuhairah</h4>
+                                        <p class="text-slate-700 mt-1">Ayah Khabbab bin Al-Arat berasal dari tawanan perang daerah <strong>Kaskar</strong> yang dibawa ke Makkah. Adapun <strong>Amir bin Fuhairah</strong> yang disiksa berat oleh kaum Quraisy juga diselamatkan dan <strong>dimerdekakan oleh Abu Bakar Ash-Shiddiq</strong>.</p>
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Hijrah ke Habasyah & Pemboikotan Kaum Quraisy',
+                        summary: 'Memahami perjalanan hijrah ke negeri Raja Najasyi, pemboikotan Bani Hasyim, serta peristiwa Tahun Kesedihan (Amul Huzun).',
+                        sections: [
+                            {
+                                heading: '1. Dua Tahap Hijrah ke Habasyah (Ethiopia)',
+                                content: `<p class="mb-2">Karena <strong>kekejaman kaum kafir Quraisy yang semakin keras menyiksa kaum muslimin</strong>, Rasulullah SAW memerintahkan para sahabat berhijrah mencari perlindungan ke negeri <strong>Habasyah</strong> yang dipimpin oleh seorang raja yang adil bernama <strong>Raja Najasyi</strong>.</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Hijrah Tahap Pertama:</strong> Terjadi pada <strong>tahun ke-5 kenabian</strong>, dipimpin oleh <strong>Utsman bin Affan</strong> yang didampingi istrinya, yaitu putri Rasulullah SAW bernama <strong>Ruqayyah binti Muhammad SAW</strong>.</li>
+                                    <li><strong>Kabar Keliru & Hijrah Tahap Kedua:</strong> Sebagian sahabat sempat kembali ke Makkah karena <strong>mendengar kabar bahwa kaum kafir Quraisy telah memeluk Islam</strong>. Namun setelah mengetahui tekanan justru makin berat, Nabi mengizinkan hijrah tahap kedua yang diikuti sekitar <strong>83 laki-laki dan 19 perempuan</strong> di bawah pimpinan <strong>Ja'far bin Abi Thalib</strong>.</li>
+                                    <li><strong>Diplomasi Quraisy:</strong> Kaum Quraisy mengutus dua orang, yakni <strong>Abdullah bin Abi Rabi'ah dan Amru bin Al-Ash</strong>, dengan membawa berbagai <strong>hadiah</strong> untuk membujuk Raja Najasyi agar menyerahkan kaum muslimin. Namun Raja Najasyi menolak bujukan itu dan melindungi kaum muslimin sehingga mereka tinggal dengan perasaan <strong>aman dan tenteram</strong>.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Pemboikotan Kaum Quraisy dan Amul Huzun',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Pemboikotan (Tahun ke-7 hingga ke-10 Kenabian):</strong> Kaum Quraisy bersepakat memutus hubungan sosial dan ekonomi terhadap Bani Hasyim dan Bani Abdul Muthalib selama <strong>tiga tahun</strong> (berlangsung mulai <strong>tahun ke-7 kenabian</strong>). Isi perjanjiannya adalah: (1) dilarang menikah dengan mereka, (2) dilarang menjual barang kepada mereka, dan (3) dilarang membeli barang dari mereka. Piagam (<em>sahifah</em>) pemboikotan ini ditulis oleh <strong>Mansur bin Ikrimah</strong> dan ditempel di dinding Ka'bah. Selama masa sulit itu, Nabi tetap bersabar dan <strong>tidak pernah mengeluh kepada Allah SWT</strong>.</li>
+                                    <li><strong>Amul Huzun (Tahun Kesedihan):</strong> Terjadi pada <strong>tahun ke-10 kenabian</strong> ketika dua pembela utama Rasulullah SAW wafat berdekatan, yaitu paman beliau <strong>Abu Thalib</strong> dan istri tercinta beliau <strong>Siti Khadijah</strong>.</li>
+                                </ul>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 4',
+                        title: 'Kepribadian Mulia & Kasih Sayang Rasulullah SAW',
+                        summary: 'Meneladani kasih sayang Nabi kepada keluarga, anak perempuan, hewan, serta kelestarian lingkungan.',
+                        sections: [
+                            {
+                                heading: '1. Kasih Sayang kepada Keluarga, Sahabat, dan Sesama',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Kasih Sayang kepada Istri:</strong> Suatu pagi saat Rasulullah SAW mendapati istrinya, Aisyah r.a., belum sempat ke pasar untuk menyiapkan sarapan, Nabi tidak marah melainkan bersabda dengan lembut: <em>"Jika demikian aku puasa saja hari ini."</em></li>
+                                    <li><strong>Memuliakan Anak Perempuan:</strong> Berbeda dengan tradisi Quraisy yang menganggap anak perempuan sebagai aib, Nabi mengajarkan bahwa <strong>anak adalah amanah Allah SWT, baik laki-laki maupun perempuan</strong>. Ketika putrinya, Fatimah, menangis ketakutan karena Abu Jahal melemparkan kotoran unta ke punggung Nabi saat salat, Nabi segera <strong>menghibur Fatimah dengan penuh kasih sayang</strong>.</li>
+                                    <li><strong>Kasih Sayang kepada Orang Lain:</strong> Beliau tetap sabar, memaafkan penduduk Thaif yang melemparinya batu, dan tidak membalas keburukan dengan keburukan.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Kepedulian terhadap Hewan, Lingkungan, dan Benda Pribadi',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Menyayangi Hewan:</strong> Nabi mewajibkan umat Islam memberi makan dan merawat hewan peliharaan. Beliau mengisahkan seorang wanita yang masuk neraka karena mengurung seekor <strong>kucing hingga mati karena tidak diberi makan</strong>.</li>
+                                    <li><strong>Menjaga Lingkungan (Pesan Perang Mu'tah):</strong> Sebelum pasukan berangkat menuju Perang Mu'tah, Nabi berpesan agar tidak membunuh wanita, anak kecil, orang tua, menghancurkan rumah, serta <strong>dilarang memotong pepohonan atau merusak tanaman</strong>.</li>
+                                    <li><strong>Merawat Benda Milik Pribadi:</strong> Sebagai bentuk kepedulian terhadap barang-barangnya, Nabi memberi nama pada benda miliknya, seperti perisai beliau yang bernama <em>Al-Fudul</em> dan pedang beliau yang bernama <strong>Zulfiqar</strong>.</li>
+                                </ul>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Paman Nabi Muhammad SAW yang sangat menentang dakwah di Bukit Safa dan namanya diabadikan dalam Al-Qur\'an karena permusuhannya adalah ....',
+                        options: ['Abu Thalib', 'Hamzah bin Abdul Muthalib', 'Abu Lahab'],
+                        answer: 2,
+                        explanation: 'Abu Lahab adalah paman Nabi yang menentang keras dakwah di Bukit Safa hingga turun Surah Al-Lahab.'
+                    },
+                    {
+                        q: 'Sahabat yang memimpin rombongan kaum muslimin pada Hijrah ke Habasyah tahap kedua serta berpidato dengan fasih di hadapan Raja Najasyi adalah ....',
+                        options: ['Ja\'far bin Abi Thalib', 'Amru bin Al-Ash', 'Mansur bin Ikrimah'],
+                        answer: 0,
+                        explanation: 'Ja\'far bin Abi Thalib memimpin 83 laki-laki dan 19 perempuan pada hijrah tahap kedua ke Habasyah.'
+                    },
+                    {
+                        q: 'Peristiwa wafatnya Abu Thalib dan Siti Khadijah pada tahun ke-10 kenabian membuat tahun tersebut dikenal dengan sebutan ....',
+                        options: ['\'Amul Fil', 'Amul Huzun (Tahun Kesedihan)', 'Fathu Makkah'],
+                        answer: 1,
+                        explanation: 'Amul Huzun berarti Tahun Kesedihan atas wafatnya dua sosok pembela utama Rasulullah SAW.'
+                    }
+                ]
+            },
+
+            // 6. SKI KELAS 6
+            {
+                id: 'ski-6',
+                grade: '6',
+                title: 'Sejarah Kebudayaan Islam (SKI)',
+                gradeLabel: 'Kelas 6 MI',
+                icon: 'compass',
+                color: 'teal',
+                description: 'Mempelajari strategi dakwah kultural dan sosial Wali Songo di Pulau Jawa, khususnya perjuangan Sunan Gresik, Sunan Ampel, Sunan Bonang, Sunan Drajat, dan Sunan Giri.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'Sunan Gresik (Maulana Malik Ibrahim)',
+                        summary: 'Mengenal pelopor penyebaran Islam di Pulau Jawa, pendekatan sosial-ekonomi, dan penghapusan diskriminasi kasta.',
+                        sections: [
+                            {
+                                heading: '1. Profil dan Kedudukan Sunan Gresik',
+                                content: `<p class="text-sm text-slate-700 mb-2"><strong>Sunan Gresik</strong> memiliki nama asli <strong>Maulana Malik Ibrahim</strong>. Dalam sejarah Wali Songo, beliau dikenal sebagai <strong>wali senior</strong> sekaligus pelopor awal penyebaran agama Islam di Pulau Jawa. Di tengah masyarakat setempat, beliau akrab dijuluki sebagai <strong>Kakek Bantal</strong> (karena kebiasaan beliau meletakkan kitab-kitab atau bantal alas saat mengajarkan ilmu dan mengobati masyarakat).</p>`
+                            },
+                            {
+                                heading: '2. Strategi Dakwah dan Peninggalan Sunan Gresik',
+                                content: `<ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Pendekatan Sosial dan Kesehatan:</strong> Untuk menarik simpati masyarakat dan kalangan bangsawan Gresik, Sunan Gresik membuka praktik <strong>mengobati orang sakit</strong> secara gratis menggunakan ramuan tradisional serta ramah kepada siapa saja.</li>
+                                    <li><strong>Meningkatkan Kesejahteraan Pertanian:</strong> Selain berdakwah, beliau membantu rakyat meningkatkan hasil panen dengan <strong>membagikan bibit unggul gratis</strong> dan memperkenalkan sistem pengairan yang baik.</li>
+                                    <li><strong>Menghapus Sistem Kasta:</strong> Pada masa kerajaan Hindu-Buddha, masyarakat terbagi dalam sistem kasta (Brahmana, Ksatria, Waisya, dan lapisan paling rendah yaitu <strong>Sudra</strong>). Sunan Gresik memperkenalkan nilai Islam yang menjunjung tinggi persamaan derajat manusia tanpa membedakan <strong>sistem kasta</strong>.</li>
+                                    <li><strong>Toleransi terhadap Penguasa:</strong> Ketika mengajak Raja Majapahit (<strong>Prabu Brawijaya</strong>) memeluk Islam dan belum berhasil, Sunan Gresik tidak memaksa melainkan tetap <strong>menghormati keyakinan lain, menjaga toleransi</strong>, dan menghindari konflik karena <strong>perbedaan agama</strong>.</li>
+                                    <li><strong>Peninggalan Bersejarah:</strong> Mendirikan pusat awal penyebaran Islam berupa <strong>Masjid di Desa Pesucinan, Manyar</strong> (Gresik) serta merintis lembaga pendidikan <strong>pesantren</strong> sebagai tempat membina calon <strong>ulama dan mubalig</strong>.</li>
+                                    <li><strong>Nilai Keteladanan:</strong> Rajin menolong sesama, peduli terhadap fakir miskin, ramah dan santun, tekun berdakwah, serta menjaga kerukunan.</li>
+                                </ul>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'Sunan Ampel (Raden Rahmat)',
+                        summary: 'Mempelajari pusat dakwah Ampel Denta, prinsip dakwah santun, dan ajaran moral Falsafah Moh Limo.',
+                        sections: [
+                            {
+                                heading: '1. Perjuangan Dakwah di Ampel Denta Surabaya',
+                                content: `<p class="mb-2 text-sm text-slate-700"><strong>Sunan Ampel</strong> memiliki nama asli <strong>Raden Rahmat</strong> (dikenal juga dengan gelar <strong>Sayyid Ali Rahmatullah</strong>). Atas jasa dan kebijaksanaannya dalam membantu memperbaiki moral para bangsawan Kerajaan Majapahit, <strong>Prabu Brawijaya Kertabumi</strong> menghadiahkan sebidang tanah di Surabaya yang kemudian dikenal sebagai pusat dakwah <strong>Ampel Denta</strong>.</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1.5 text-slate-700">
+                                    <li><strong>Media Dakwah Awal:</strong> Raden Rahmat memulai dakwahnya dengan mendirikan sebuah langgar sederhana yang berfungsi sebagai pusat <strong>kegiatan ibadah</strong> dan pendidikan masyarakat. Ketika berdakwah di Surabaya, beliau juga pernah memberikan benda berupa <strong>kipas dari akar dan rotan</strong> secara gratis kepada warga yang bersedia mengucapkan dua kalimat syahadat.</li>
+                                    <li><strong>Tokoh Pengikut Awal:</strong> Dua tokoh berpengaruh dari daerah Kembang Kuning yang memeluk Islam dan menjadi pengikut setia beliau adalah <strong>Ki Wiryosarojo dan Ki Bang Kuning</strong>.</li>
+                                    <li><strong>Prinsip Dakwah:</strong> Sunan Ampel mengutamakan prinsip <em>Mau'izatil Hasanah wa Mujadalah Billati Hiya Ahsan</em>, yakni <strong>menyampaikan kebaikan dengan nasihat dan dialog yang santun</strong>, serta mengajarkan bahwa berdakwah merupakan kewajiban bagi <strong>setiap muslim</strong>.</li>
+                                    <li><strong>Karya Tulisan & Penerus:</strong> Sunan Ampel memperkenalkan penggunaan huruf Arab untuk menuliskan bahasa Jawa yang disebut <strong>Huruf Pegon</strong>. Putra beliau yang juga menjadi anggota Wali Songo adalah Sunan Bonang dan <strong>Sunan Drajat</strong>.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '2. Falsafah Moh Limo (Lima Larangan Moral)',
+                                content: `<p class="text-sm text-slate-700 mb-2">Untuk membina akhlak masyarakat agar menjauhi perbuatan yang merusak diri dan lingkungan sosial, Sunan Ampel mengajarkan <strong>Falsafah Moh Limo</strong> (<em>Moh</em> = tidak mau, <em>Limo</em> = lima):</p>
+                                <div class="grid sm:grid-cols-5 gap-2 text-center text-xs">
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl"><div class="font-extrabold text-emerald-900 text-sm mb-1">1. Moh Main</div><p class="text-slate-700">Tidak mau berjudi</p></div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl"><div class="font-extrabold text-emerald-900 text-sm mb-1">2. Moh Ngombe</div><p class="text-slate-700">Tidak mau minum minuman keras / arak</p></div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl"><div class="font-extrabold text-emerald-900 text-sm mb-1">3. Moh Maling</div><p class="text-slate-700">Tidak mau mencuri</p></div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl"><div class="font-extrabold text-emerald-900 text-sm mb-1">4. Moh Madat</div><p class="text-slate-700">Tidak mau mengisap candu / narkoba</p></div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl"><div class="font-extrabold text-emerald-900 text-sm mb-1">5. Moh Madon</div><p class="text-slate-700">Tidak mau berbuat zina / asusila</p></div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'Sunan Bonang, Sunan Drajat, dan Sunan Giri',
+                        summary: 'Mengenal dakwah seni budaya Sunan Bonang, dakwah sosial Sunan Drajat, serta kepemimpinan pendidikan Sunan Giri.',
+                        sections: [
+                            {
+                                heading: '1. Sunan Bonang (Raden Makdum Ibrahim)',
+                                content: `<p class="text-sm text-slate-700"><strong>Sunan Bonang</strong> memiliki nama asli <strong>Raden Makdum Ibrahim</strong> (putra Sunan Ampel) yang ditugaskan ayahnya berdakwah di wilayah pesisir <strong>Tuban</strong>. Beliau berdakwah melalui <strong>pendekatan seni dan budaya</strong>: memanfaatkan alat musik gamelan khususnya <strong>bonang</strong>, menciptakan tembang dan karya sastra bernapas Islam yang disebut <strong>Suluk</strong> (naskahnya tersimpan hingga kini di Universitas Leiden, Belanda). Masjid yang dibangun Sunan Bonang awalnya disebut masyarakat sebagai <strong>Omah Gede</strong>.</p>`
+                            },
+                            {
+                                heading: '2. Sunan Drajat (Raden Qasim)',
+                                content: `<p class="text-sm text-slate-700 mb-2"><strong>Sunan Drajat</strong> bernama asli <strong>Raden Qasim</strong> (adik kandung Sunan Bonang). Beliau dikenal sebagai wali berjiwa sosial tinggi yang sangat memperhatikan kesejahteraan kaum <strong>fakir miskin</strong> dan anak yatim.</p>
+                                <ul class="list-disc pl-5 text-sm space-y-1 text-slate-700">
+                                    <li><em>"Jroning Suka Kudu Eling Lan Waspada"</em> (Di dalam suasana gembira harus tetap ingat kepada Allah dan waspada).</li>
+                                    <li><em>"Memangun Resep Tyasing Sasomo"</em> (Selalu berusaha menyenangkan <strong>hati orang lain</strong>).</li>
+                                    <li><em>"Wenehono teken marang wong kang wuto, wenehono payung marang wong kang kodanan (kehujanan)"</em> — Ajakan nyata untuk menolong sesama yang kesusahan.</li>
+                                </ul>`
+                            },
+                            {
+                                heading: '3. Sunan Giri (Raden Paku / Jaka Samudra)',
+                                content: `<p class="text-sm text-slate-700 mb-2"><strong>Sunan Giri</strong> memiliki gelar <strong>Raden Paku</strong> dan nama masa kecil <strong>Jaka Samudra</strong>. Menurut sejarah Wali Songo, ketika masih bayi, putra dari Maulana Ishaq dan <strong>Dewi Sekardadu</strong> ini terpaksa dihanyutkan ke Selat Bali karena hasutan Patih Bajul Sengara kepada Prabu Menak Sembuyu di Blambangan yang menuduh bayi tersebut sebagai penyebab wabah penyakit.</p>
+                                <p class="text-sm text-slate-700 mb-2">Bayi tersebut kemudian ditemukan di laut oleh dua awak kapal bernama <strong>Sabar dan Sobir</strong>, lalu diasuh dengan penuh kasih sayang oleh seorang saudagar kaya di Gresik bernama <strong>Nyi Ageng Pinatih</strong>. Kelak setelah dewasa, Sunan Giri mendirikan pesantren dan pusat pemerintahan Islam yang dikenal sebagai <strong>Giri Kedaton</strong>.</p>
+                                <div class="bg-teal-50 border border-teal-200 p-3.5 rounded-xl text-sm text-teal-950">
+                                    <strong>Falsafah Heneng-Hening-Henung:</strong> <em>Heneng</em> berarti diam/tenang, <em>Hening</em> berarti menjernihkan pikiran dan hati, serta <em>Henung</em> berarti mencapai kesadaran dan kebijaksanaan dalam bertindak.
+                                </div>`
+                            },
+                            {
+                                heading: '4. Materi Pengayaan: Melengkapi 9 Wali Songo',
+                                isEnrichment: true,
+                                content: `<p class="text-sm text-slate-700">Selain kelima wali di atas, anggota Wali Songo lainnya yang berjasa besar menyebarkan Islam di Tanah Jawa adalah <strong>Sunan Kalijaga</strong> (Raden Said, dakwah wayang kulit), <strong>Sunan Kudus</strong> (Ja'far Shadiq, toleransi antarumat beragama), <strong>Sunan Muria</strong> (Raden Umar Said, dakwah masyarakat pedesaan), dan <strong>Sunan Gunung Jati</strong> (Syarif Hidayatullah, penyebar Islam di Jawa Barat).</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Strategi awal yang dilakukan Sunan Gresik (Maulana Malik Ibrahim) untuk menarik simpati masyarakat dan bangsawan setempat adalah ....',
+                        options: ['Mengobati orang sakit secara gratis dan membantu pertanian', 'Membangun istana megah di tengah hutan', 'Melarang seluruh kesenian daerah'],
+                        answer: 0,
+                        explanation: 'Sunan Gresik melakukan pendekatan sosial melalui pengobatan gratis, pertanian, dan perdagangan.'
+                    },
+                    {
+                        q: 'Dalam ajaran Falsafah Moh Limo yang disampaikan Sunan Ampel, larangan untuk tidak mengisap candu atau obat terlarang disebut ....',
+                        options: ['Moh Main', 'Moh Madat', 'Moh Ngombe'],
+                        answer: 1,
+                        explanation: 'Moh Madat artinya tidak mau mengisap candu atau zat memabukkan lainnya.'
+                    },
+                    {
+                        q: 'Pusat pendidikan pesantren sekaligus pemerintahan yang didirikan oleh Sunan Giri dikenal dengan nama ....',
+                        options: ['Ampel Denta', 'Giri Kedaton', 'Omah Gede'],
+                        answer: 1,
+                        explanation: 'Sunan Giri mendirikan pusat pendidikan dan pemerintahan yang bernama Giri Kedaton.'
+                    }
+                ]
+            },
+
+            // 7. BAHASA ARAB KELAS 3
+            {
+                id: 'arab-3',
+                grade: '3',
+                title: 'Bahasa Arab',
+                gradeLabel: 'Kelas 3 MI',
+                icon: 'languages',
+                color: 'emerald',
+                description: 'Menguasai kosakata harian bertema Nama-Nama Penyakit (الأَمْرَاضُ), Nama Mata Pelajaran (المَوَادُّ الدِّرَاسِيَّةُ), serta Nama Hewan dan Kebun Binatang (الحَيَوَانَاتُ).',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'الأَمْرَاضُ (Nama-Nama Penyakit & Kesehatan)',
+                        summary: 'Mempelajari kosakata gangguan kesehatan, ungkapan saat sakit, serta bacaan pendek tentang menjaga kesehatan.',
+                        sections: [
+                            {
+                                heading: '1. Kosakata Utama (Mufradat) Nama-Nama Penyakit',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Flu / Pilek</div><div class="text-xs text-slate-500">Zukāmun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">زُكَامٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Pusing / Sakit Kepala</div><div class="text-xs text-slate-500">Shudā'un</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">صُدَاعٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sakit Perut</div><div class="text-xs text-slate-500">Mabthūnun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">مَبْطُوْنٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sakit Gigi</div><div class="text-xs text-slate-500">Waja'us-Sinni</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">وَجَعُ السِّنِّ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sakit Mata</div><div class="text-xs text-slate-500">Waja'ul-'Aini</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">وَجَعُ الْعَيْنِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Saya Demam</div><div class="text-xs text-slate-500">Anā Hummā</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">أَنَا حُمَّى</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Radang Amandel</div><div class="text-xs text-slate-500">Iltihābul-Lauzataini</div></div>
+                                        <span class="arabic-text text-xl font-bold text-emerald-800">اِلْتِهَابُ اللَّوْزَتَيْنِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Obat</div><div class="text-xs text-slate-500">Dawā'un</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">دَوَاءٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sakit (Umum)</div><div class="text-xs text-slate-500">Marīdhun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">مَرِيْضٌ</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Contoh Pemakaian dalam Kalimat',
+                                content: `<div class="bg-emerald-50/60 border border-emerald-200 p-4 rounded-xl space-y-2">
+                                    <p class="arabic-text text-2xl text-emerald-950 font-bold">عِنْدِي وَجَعُ السِّنِّ وَوَجَعُ الْعَيْنِ أَيْضًا</p>
+                                    <p class="text-sm text-slate-700">Artinya: <em>"Saya mengalami sakit gigi dan sakit mata juga."</em> (Kata <span class="arabic-text text-lg font-bold">أَيْضًا</span> berarti "juga").</p>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'المَوَادُّ الدِّرَاسِيَّةُ (Nama-Nama Mata Pelajaran)',
+                        summary: 'Mengenal nama mata pelajaran di Madrasah Ibtidaiyah beserta ungkapan semangat belajar.',
+                        sections: [
+                            {
+                                heading: '1. Daftar Nama Mata Pelajaran di Madrasah',
+                                content: `<div class="grid sm:grid-cols-2 gap-3">
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Matematika</div><div class="text-xs text-slate-500">Ar-Riyādhiyyatu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الرِّيَاضِيَّةُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Bahasa Arab</div><div class="text-xs text-slate-500">Al-Lughatul-'Arabiyyatu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">اللُّغَةُ الْعَرَبِيَّةُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Akidah dan Akhlak</div><div class="text-xs text-slate-500">Al-'Aqīdatu wal-Akhlāqu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الْعَقِيْدَةُ وَالْأَخْلَاقُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Fikih</div><div class="text-xs text-slate-500">Al-Fiqhu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الْفِقْهُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Al-Qur'an dan Hadits</div><div class="text-xs text-slate-500">Al-Qur'ānu wal-Hadītsu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الْقُرْآنُ وَالْحَدِيْثُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sejarah Kebudayaan Islam (SKI)</div><div class="text-xs text-slate-500">At-Tārīkhul-Islāmiyyu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">التَّارِيْخُ الْإِسْلَامِيُّ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between sm:col-span-2">
+                                        <div><div class="font-bold text-slate-800 text-sm">Baca Tulis Al-Qur'an (BTQ)</div><div class="text-xs text-slate-500">Al-Qirā'atu wa Kitābatul-Qur'āni</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الْقِرَاءَةُ وَكِتَابَةُ الْقُرْآنِ</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Ungkapan Penting dalam Kegiatan Belajar & Ibadah',
+                                content: `<div class="grid sm:grid-cols-3 gap-3 text-center">
+                                    <div class="bg-gold-50/70 border border-gold-200 p-3.5 rounded-xl">
+                                        <p class="arabic-text text-2xl font-bold text-slate-900">طَلَبُ الْعِلْمِ</p>
+                                        <p class="text-xs text-slate-500">Thalabul-'Ilmi</p>
+                                        <p class="text-sm font-bold text-gold-900 mt-1">Menuntut Ilmu</p>
+                                    </div>
+                                    <div class="bg-gold-50/70 border border-gold-200 p-3.5 rounded-xl">
+                                        <p class="arabic-text text-2xl font-bold text-slate-900">حَيَّ عَلَى الصَّلَاةِ</p>
+                                        <p class="text-xs text-slate-500">Hayya 'alash-Shalāh</p>
+                                        <p class="text-sm font-bold text-gold-900 mt-1">Mari Salat</p>
+                                    </div>
+                                    <div class="bg-gold-50/70 border border-gold-200 p-3.5 rounded-xl">
+                                        <p class="arabic-text text-2xl font-bold text-slate-900">أُوَافِقُ</p>
+                                        <p class="text-xs text-slate-500">Uwāfiqu</p>
+                                        <p class="text-sm font-bold text-gold-900 mt-1">Saya Setuju</p>
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'الحَيَوَانَاتُ وَحَدِيقَةُ الحَيَوَانَاتِ (Hewan & Kebun Binatang)',
+                        summary: 'Mengenal nama berbagai hewan, aktivitas rekreasi di kebun binatang, serta cara menggunakan kata tunjuk (Isim Isyarah).',
+                        sections: [
+                            {
+                                heading: '1. Kosakata Nama-Nama Hewan & Ungkapan Tempat',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Gajah</div><div class="text-xs text-slate-500">Fīlun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">فِيْلٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Singa</div><div class="text-xs text-slate-500">Asadun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">أَسَدٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Kambing / Domba</div><div class="text-xs text-slate-500">Ghanamun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">غَنَمٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Kucing</div><div class="text-xs text-slate-500">Qiththun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">قِطٌّ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Nyamuk</div><div class="text-xs text-slate-500">Ba'ūdhatun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">بَعُوْضَةٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Anjing / Kelinci</div><div class="text-xs text-slate-500">Kalbun / Arnabun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">كَلْبٌ / أَرْنَبٌ</span>
+                                    </div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center justify-between sm:col-span-2">
+                                        <div><div class="font-bold text-emerald-900 text-sm">Kebun Binatang</div><div class="text-xs text-emerald-700">Hadīqatul-Hayawānāti</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-900">حَدِيْقَةُ الْحَيَوَانَاتِ</span>
+                                    </div>
+                                    <div class="bg-emerald-50 border border-emerald-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-emerald-900 text-sm">Berjalan-jalan</div><div class="text-xs text-emerald-700">Yatamasyā</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-900">يَتَمَشَّى</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Pola Kalimat Kata Tunjuk (هٰذَا / هٰذِهِ / ذٰلِكَ)',
+                                content: `<p class="text-sm text-slate-700 mb-2">Untuk menunjuk benda atau hewan yang dekat digunakan <span class="arabic-text text-lg font-bold">هٰذَا</span> (untuk kata tanpa ta marbuthah ة) dan <span class="arabic-text text-lg font-bold">هٰذِهِ</span> (untuk kata berakhiran ta marbuthah ة), sedangkan untuk jarak jauh digunakan <span class="arabic-text text-lg font-bold">ذٰلِكَ</span> (itu):</p>
+                                <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl space-y-2 text-sm">
+                                    <div class="flex items-center justify-between"><span><strong>Ini nyamuk</strong> (berakhiran ة):</span><span class="arabic-text text-2xl font-bold text-emerald-900">هٰذِهِ بَعُوْضَةٌ</span></div>
+                                    <div class="flex items-center justify-between"><span><strong>Ini kambing dan itu singa:</strong></span><span class="arabic-text text-2xl font-bold text-emerald-900">هٰذَا غَنَمٌ وَذٰلِكَ أَسَدٌ</span></div>
+                                </div>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Kosakata bahasa Arab yang memiliki arti "pusing / sakit kepala" adalah ....',
+                        options: ['زُكَامٌ (Zukāmun)', 'صُدَاعٌ (Shudā\'un)', 'مَبْطُوْنٌ (Mabthūnun)'],
+                        answer: 1,
+                        explanation: 'صُدَاعٌ (Shudā\'un) artinya pusing, زُكَامٌ artinya flu, dan مَبْطُوْنٌ artinya sakit perut.'
+                    },
+                    {
+                        q: 'Pelajaran Sejarah Kebudayaan Islam (SKI) dalam bahasa Arab disebut ....',
+                        options: ['التَّارِيْخُ الْإِسْلَامِيُّ', 'الرِّيَاضِيَّةُ', 'الْفِقْهُ'],
+                        answer: 0,
+                        explanation: 'التَّارِيْخُ الْإِسْلَامِيُّ (At-Tārīkhul-Islāmiyyu) berarti Sejarah Kebudayaan Islam.'
+                    },
+                    {
+                        q: 'Jika ingin mengatakan "Ini nyamuk" dalam bahasa Arab, kata tunjuk yang tepat untuk بَعُوْضَةٌ adalah ....',
+                        options: ['هٰذَا بَعُوْضَةٌ', 'هٰذِهِ بَعُوْضَةٌ', 'ذٰلِكَ بَعُوْضَةٌ'],
+                        answer: 1,
+                        explanation: 'Karena kata بَعُوْضَةٌ berakhiran ta marbuthah (ة), maka kata tunjuk dekatnya menggunakan هٰذِهِ.'
+                    }
+                ]
+            },
+
+            // 8. BAHASA ARAB KELAS 4
+            {
+                id: 'arab-4',
+                grade: '4',
+                title: 'Bahasa Arab',
+                gradeLabel: 'Kelas 4 MI',
+                icon: 'languages',
+                color: 'teal',
+                description: 'Mempelajari percakapan bertema Alamat Rumah (العُنْوَانُ), Profesi dan Cita-Cita (المِهْنَةُ), serta tata bahasa dasar kata ganti orang (Dhomir) dan kata ganti kepemilikan.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'العُنْوَانُ (Alamat Rumah & Tempat Tinggal)',
+                        summary: 'Menguasai kosakata alamat, nama kota/provinsi di Indonesia, angka nomor rumah, dan ungkapan tempat umum.',
+                        sections: [
+                            {
+                                heading: '1. Kosakata Alamat, Fasilitas Umum, dan Wilayah',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Alamat</div><div class="text-xs text-slate-500">'Unwānun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">عُنْوَانٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Jalan</div><div class="text-xs text-slate-500">Syāri'un</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">شَارِعٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Nomor</div><div class="text-xs text-slate-500">Raqmun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">رَقْمٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">SD / Madrasah Ibtidaiyah</div><div class="text-xs text-slate-500">Al-Madrasatul-Ibtidā'iyyah</div></div>
+                                        <span class="arabic-text text-xl font-bold text-teal-800">الْمَدْرَسَةُ الْابْتِدَائِيَّةُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Taman Kanak-Kanak (TK/RA)</div><div class="text-xs text-slate-500">Raudhatul-Athfāli</div></div>
+                                        <span class="arabic-text text-xl font-bold text-teal-800">رَوْضَةُ الْأَطْفَالِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Stasiun Kereta Api</div><div class="text-xs text-slate-500">Mahaththatul-Qithāri</div></div>
+                                        <span class="arabic-text text-xl font-bold text-teal-800">مَحَطَّةُ الْقِطَارِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Jawa Tengah</div><div class="text-xs text-slate-500">Jawā Al-Wusthā</div></div>
+                                        <span class="arabic-text text-xl font-bold text-teal-800">جَوَى الْوُسْطَى</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Libur</div><div class="text-xs text-slate-500">Al-'Uthlatu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">الْعُطْلَةُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sampai Jumpa</div><div class="text-xs text-slate-500">Ilal-Liqā'i</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-teal-800">إِلَى اللِّقَاءِ</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Cara Menyebutkan Alamat dan Nomor Rumah',
+                                content: `<p class="text-sm text-slate-700 mb-2">Angka Arab dibaca dari kiri ke kanan (misalnya: 4 = ٤, 9 = ٩, 7 = ٧, sehingga 497 ditulis <strong>٤٩٧</strong>). Contoh kalimat alamat:</p>
+                                <div class="bg-teal-50/70 border border-teal-200 p-4 rounded-xl text-center">
+                                    <p class="arabic-text text-2xl font-bold text-teal-950 mb-1">عُنْوَانُ بَيْتِي فِي شَارِعِ مَاوَارْ رَقْمُ ٤٩٧ مَالَانْج</p>
+                                    <p class="text-sm text-slate-700">Artinya: <em>"Alamat rumahku di Jalan Mawar Nomor 497 Malang."</em> (Jika diawali kata "Di Jalan Mawar Nomor 497", maka ditulis: <span class="arabic-text text-xl font-bold">فِي شَارِعِ مَاوَارْ رَقْمُ ٤٩٧</span>).</p>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'المِهْنَةُ (Profesi dan Pekerjaan)',
+                        summary: 'Mengenal berbagai nama profesi di sekitar kita serta ungkapan yang berkaitan dengan aktivitas pekerjaan.',
+                        sections: [
+                            {
+                                heading: '1. Kosakata Nama-Nama Profesi',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-3">
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Profesi / Pekerjaan</div><div class="text-xs text-slate-500">Mihnatun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">مِهْنَةٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Dokter</div><div class="text-xs text-slate-500">Thabībun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">طَبِيْبٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Petani</div><div class="text-xs text-slate-500">Fallāhun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">فَلَّاحٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Apoteker</div><div class="text-xs text-slate-500">Shaidaliyyun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">صَيْدَلِيٌّ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Masinis Kereta Api</div><div class="text-xs text-slate-500">Sā'iqul-Qithāri</div></div>
+                                        <span class="arabic-text text-xl font-bold text-emerald-800">سَائِقُ الْقِطَارِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Nakhoda Kapal</div><div class="text-xs text-slate-500">Rubbānus-Safīnati</div></div>
+                                        <span class="arabic-text text-xl font-bold text-emerald-800">رُبَّانُ السَّفِيْنَةِ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Guru / Ustadz</div><div class="text-xs text-slate-500">Al-Ustādzu</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">الْأُسْتَاذُ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Rajin / Giat</div><div class="text-xs text-slate-500">Nasyīthun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">نَشِيْطٌ</span>
+                                    </div>
+                                    <div class="bg-white border border-slate-200 p-3.5 rounded-xl flex items-center justify-between">
+                                        <div><div class="font-bold text-slate-800 text-sm">Sibuk</div><div class="text-xs text-slate-500">Masyghūlun</div></div>
+                                        <span class="arabic-text text-2xl font-bold text-emerald-800">مَشْغُوْلٌ</span>
+                                    </div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Ungkapan Tambahan dalam Teks Bacaan',
+                                content: `<div class="grid sm:grid-cols-2 gap-2.5 text-sm">
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center"><span>Bermacam-macam:</span><span class="arabic-text text-xl font-bold">مُتَنَوِّعَةٌ</span></div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center"><span>Bermanfaat:</span><span class="arabic-text text-xl font-bold">مُفِيْدٌ</span></div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center"><span>Hendaknya / Seyogyanya:</span><span class="arabic-text text-xl font-bold">يَنْبَغِي</span></div>
+                                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 flex justify-between items-center"><span>Dengan selamat:</span><span class="arabic-text text-xl font-bold">بِالسَّلَامَةِ</span></div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'التَّرَاكِيبُ النَّحْوِيَّةُ (Kata Ganti Orang & Kepemilikan)',
+                        summary: 'Memahami penggunaan Dhomir Munfashil (أَنَا، أَنْتَ، أَنْتِ، هُوَ، هِيَ، هُمَا) dan akhiran kepemilikan (-ِي dan -نَا).',
+                        sections: [
+                            {
+                                heading: '1. Kata Ganti Orang (Dhomir) dan Penyesuaian Gender',
+                                content: `<p class="text-sm text-slate-700 mb-3">Dalam bahasa Arab, kata sifat atau profesi setelah kata ganti orang harus menyesuaikan jenis kelaminnya (laki-laki tanpa <strong>ة</strong>, perempuan ditambah <strong>ة</strong>):</p>
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="bg-slate-100 font-bold text-slate-700">
+                                            <tr>
+                                                <th class="px-4 py-2">Kata Ganti</th>
+                                                <th class="px-4 py-2">Arti</th>
+                                                <th class="px-4 py-2">Contoh Kalimat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200">
+                                            <tr><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">أَنَا</td><td class="px-4 py-2">Saya</td><td class="px-4 py-2"><span class="arabic-text text-xl font-bold">أَنَا تِلْمِيْذٌ</span> (Saya murid lk)</td></tr>
+                                            <tr><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">أَنْتَ</td><td class="px-4 py-2">Kamu (laki-laki)</td><td class="px-4 py-2"><span class="arabic-text text-xl font-bold">أَنْتَ طَالِبٌ</span> (Kamu siswa lk)</td></tr>
+                                            <tr><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">أَنْتِ</td><td class="px-4 py-2">Kamu (perempuan)</td><td class="px-4 py-2"><span class="arabic-text text-xl font-bold">أَنْتِ تِلْمِيْذَةٌ</span> (Kamu murid pr)</td></tr>
+                                            <tr><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">هِيَ</td><td class="px-4 py-2">Dia (perempuan)</td><td class="px-4 py-2"><span class="arabic-text text-xl font-bold">هِيَ مُسْلِمَةٌ</span> (Dia muslimah pr)</td></tr>
+                                            <tr><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">هُمَا</td><td class="px-4 py-2">Mereka berdua</td><td class="px-4 py-2"><span class="arabic-text text-xl font-bold">هُمَا تِلْمِيْذَانِ مُجْتَهِدَانِ</span> (Mereka berdua siswa rajin)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Kata Ganti Kepemilikan (-ِي untuk "Saya" dan -نَا untuk "Kami")',
+                                content: `<p class="text-sm text-slate-700 mb-2">Untuk menyatakan kepemilikan "saya/ku", tambahkan huruf <strong>Ya sukun (<span class="arabic-text text-lg">ـِي</span>)</strong> di akhir kata benda (dan harakat sebelum Ya menjadi kasrah). Untuk kepemilikan "kami", tambahkan <strong>Na (<span class="arabic-text text-lg">ـنَا</span>)</strong>. Jika kata benda berakhiran <em>ta marbuthah</em> (ة), maka ة berubah menjadi huruf <strong>Ta biasa (ت)</strong> saat disambung:</p>
+                                <div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl space-y-2 text-sm">
+                                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-emerald-200 pb-2">
+                                        <span>Kata dasar: <span class="arabic-text text-xl font-bold">كِتَابٌ</span> (buku)</span>
+                                        <span>Bukuku: <span class="arabic-text text-xl font-bold text-emerald-900">كِتَابِي</span> | Buku kami: <span class="arabic-text text-xl font-bold text-emerald-900">كِتَابُنَا</span></span>
+                                    </div>
+                                    <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+                                        <span>Kata dasar: <span class="arabic-text text-xl font-bold">مَدْرَسَةٌ</span> (sekolah)</span>
+                                        <span>Sekolahku: <span class="arabic-text text-xl font-bold text-emerald-900">مَدْرَسَتِي</span> | Sekolah kami: <span class="arabic-text text-xl font-bold text-emerald-900">مَدْرَسَتُنَا</span></span>
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Arti dari ungkapan bahasa Arab "مَحَطَّةُ الْقِطَارِ" (Mahaththatul-Qithāri) adalah ....',
+                        options: ['Terminal bus', 'Stasiun kereta api', 'Bandara'],
+                        answer: 1,
+                        explanation: 'مَحَطَّةُ الْقِطَارِ berarti stasiun kereta api.'
+                    },
+                    {
+                        q: 'Apabila kata "مَدْرَسَةٌ" (sekolah) disambungkan dengan kata ganti kepemilikan "kami" (ـنَا), maka bentuk penulisannya yang tepat adalah ....',
+                        options: ['مَدْرَسَةُنَا', 'مَدْرَسَتُنَا', 'مَدْرَسَتِي'],
+                        answer: 1,
+                        explanation: 'Ta marbuthah (ة) berubah menjadi ta terbuka (ت) saat bersambung dengan akhiran kepemilikan sehingga menjadi مَدْرَسَتُنَا.'
+                    },
+                    {
+                        q: 'Jika kalimat "أَنَا مُسْلِمٌ" (Saya seorang muslim laki-laki) diubah subjeknya menjadi "هِيَ" (Dia perempuan), maka menjadi ....',
+                        options: ['هِيَ مُسْلِمٌ', 'هِيَ مُسْلِمَةٌ', 'هِيَ تِلْمِيْذٌ'],
+                        answer: 1,
+                        explanation: 'Untuk subjek perempuan (هِيَ), kata benda/sifatnya ditambahkan ta marbuthah menjadi مُسْلِمَةٌ.'
+                    }
+                ]
+            },
+
+            // 9. BAHASA ARAB KELAS 6
+            {
+                id: 'arab-6',
+                grade: '6',
+                title: 'Bahasa Arab',
+                gradeLabel: 'Kelas 6 MI',
+                icon: 'clock',
+                color: 'amber',
+                description: 'Menguasai ungkapan Waktu dan Jam dalam Bahasa Arab (السَّاعَةُ), kosakata Aktivitas Sehari-hari di Rumah & Sekolah (الأَعْمَالُ اليَوْمِيَّةُ), serta perubahan kata kerja Fi\'il Madhi dan Fi\'il Mudhori\'.',
+                chapters: [
+                    {
+                        bab: 'Bab 1',
+                        title: 'السَّاعَةُ (Jam dan Keterangan Waktu)',
+                        summary: 'Mempelajari penyebutan jam 1 hingga 12, penggunaan lewat 30 menit (النِّصْفُ), kurang 15 menit (إِلَّا الرُّبْعَ), dan keterangan waktu.',
+                        sections: [
+                            {
+                                heading: '1. Penyebutan Jam dan Pecahan Menit',
+                                content: `<p class="text-sm text-slate-700 mb-3">Dalam bahasa Arab, kata "jam/pukul" menggunakan bilangan bertingkat berakhiran <em>ta marbuthah</em> (مُؤَنَّثٌ) mengikuti kata <span class="arabic-text text-lg font-bold">السَّاعَةُ</span>:</p>
+                                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-sm mb-4">
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 01.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الْوَاحِدَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 02.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الثَّانِيَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 03.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الثَّالِثَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 04.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الرَّابِعَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 06.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ السَّادِسَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 07.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ السَّابِعَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 09.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ التَّاسِعَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 10.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الْعَاشِرَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam 12.00:</span><span class="arabic-text text-xl font-bold text-amber-900">السَّاعَةُ الثَّانِيَةَ عَشْرَةَ</span></div>
+                                </div>
+                                <div class="bg-amber-50/70 border border-amber-200 p-4 rounded-xl space-y-2 text-sm">
+                                    <p><strong>Rumus Lewat & Kurang:</strong> Kata <span class="arabic-text text-lg font-bold">وَ</span> artinya <em>lewat</em>, <span class="arabic-text text-lg font-bold">النِّصْفُ</span> artinya <em>setengah (30 menit)</em>, <span class="arabic-text text-lg font-bold">الرُّبْعُ</span> artinya <em>seperempat (15 menit)</em>, dan <span class="arabic-text text-lg font-bold">إِلَّا</span> artinya <em>kurang</em>.</p>
+                                    <ul class="list-disc pl-5 space-y-1 text-slate-800">
+                                        <li><span class="arabic-text text-xl font-bold text-amber-950">السَّاعَةُ الرَّابِعَةُ وَالنِّصْفُ صَبَاحًا</span> = Jam 04.30 pagi</li>
+                                        <li><span class="arabic-text text-xl font-bold text-amber-950">السَّاعَةُ التَّاسِعَةُ لَيْلًا</span> = Jam 21.00 malam (jam 9 malam)</li>
+                                        <li><span class="arabic-text text-xl font-bold text-amber-950">السَّاعَةُ الْعَاشِرَةُ لَيْلًا</span> = Pukul 22.00 malam (jam 10 malam)</li>
+                                        <li><span class="arabic-text text-xl font-bold text-amber-950">السَّاعَةُ التَّاسِعَةُ وَالنِّصْفُ صَبَاحًا</span> = Pukul 09.30 pagi</li>
+                                        <li><span class="arabic-text text-xl font-bold text-amber-950">السَّاعَةُ الثَّانِيَةُ إِلَّا الرُّبْعَ</span> = Jam dua kurang seperempat (01.45)</li>
+                                    </ul>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Kosakata Jenis Jam & Keterangan Waktu',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-sm">
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam Dinding:</span><span class="arabic-text text-xl font-bold">سَاعَةُ الْحَائِطِ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Jam Beker:</span><span class="arabic-text text-xl font-bold">سَاعَةُ الْمُنَبِّهِ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Pada jam berapa?:</span><span class="arabic-text text-xl font-bold">فِي أَيِّ سَاعَةٍ؟</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Pagi:</span><span class="arabic-text text-xl font-bold">صَبَاحًا</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Siang:</span><span class="arabic-text text-xl font-bold">نَهَارًا</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Malam:</span><span class="arabic-text text-xl font-bold">لَيْلًا</span></div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 2',
+                        title: 'الأَعْمَالُ اليَوْمِيَّةُ وَالتَّعَلُّمُ (Aktivitas Sehari-hari & Belajar)',
+                        summary: 'Menguasai kosakata rutinitas di rumah, lingkungan madrasah, keterampilan berbahasa Arab, dan ungkapan motivasi belajar.',
+                        sections: [
+                            {
+                                heading: '1. Kosakata Aktivitas Rumah dan Sekolah',
+                                content: `<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-2.5 text-sm">
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Berwudhu:</span><span class="arabic-text text-xl font-bold text-emerald-900">تَوَضَّأَ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Salat:</span><span class="arabic-text text-xl font-bold text-emerald-900">صَلَّى</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Di Kamar Mandi:</span><span class="arabic-text text-xl font-bold text-emerald-900">فِي الْحَمَّامِ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Kamarnya:</span><span class="arabic-text text-xl font-bold text-emerald-900">حُجْرَتُهُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Toko Buku:</span><span class="arabic-text text-xl font-bold text-emerald-900">دُكَّانُ الْكُتُبِ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Kamus Bahasa Arab:</span><span class="arabic-text text-xl font-bold text-emerald-900">قَامُوْسُ اللُّغَةِ الْعَرَبِيَّةِ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Menerangkan:</span><span class="arabic-text text-xl font-bold text-emerald-900">تُبَيِّنُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Kaidah / Tata Bahasa:</span><span class="arabic-text text-xl font-bold text-emerald-900">الْقَاعِدَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Masalah:</span><span class="arabic-text text-xl font-bold text-emerald-900">الْمُشْكِلَةُ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Penting:</span><span class="arabic-text text-xl font-bold text-emerald-900">مُهِمَّةٌ</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Keterampilannya:</span><span class="arabic-text text-xl font-bold text-emerald-900">مَهَارَتُهَا</span></div>
+                                    <div class="bg-white border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Bacaannya:</span><span class="arabic-text text-xl font-bold text-emerald-900">قِرَاءَتُهَا</span></div>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Ungkapan Penting Seputar Menuntut Ilmu',
+                                content: `<div class="bg-emerald-50/70 border border-emerald-200 p-4 rounded-xl space-y-2 text-sm">
+                                    <div class="flex flex-wrap justify-between items-center border-b border-emerald-200 pb-2">
+                                        <span><strong>Wajib bagi kita</strong> berkata jujur:</span>
+                                        <span class="arabic-text text-xl font-bold text-emerald-950">يَجِبُ عَلَيْنَا الصِّدْقُ فِي الْقَوْلِ</span>
+                                    </div>
+                                    <div class="flex flex-wrap justify-between items-center border-b border-emerald-200 pb-2">
+                                        <span><strong>Saya akan bersungguh-sungguh</strong> dalam belajar:</span>
+                                        <span class="arabic-text text-xl font-bold text-emerald-950">سَأَجْتَهِدُ فِي دِرَاسَتِي</span>
+                                    </div>
+                                    <div class="flex flex-wrap justify-between items-center">
+                                        <span>Kita wajib mempelajari bahasa Arab karena bahasa Al-Qur'an:</span>
+                                        <span class="arabic-text text-xl font-bold text-emerald-950">يَجِبُ عَلَيْنَا أَنْ نَتَعَلَّمَ اللُّغَةَ الْعَرَبِيَّةَ لِأَنَّهَا لُغَةُ الْقُرْآنِ</span>
+                                    </div>
+                                </div>`
+                            }
+                        ]
+                    },
+                    {
+                        bab: 'Bab 3',
+                        title: 'الفِعْلُ المَاضِي وَالفِعْلُ المُضَارِعُ (Kata Kerja Lampau & Sekarang)',
+                        summary: 'Memahami aturan perubahan akhiran Fi\'il Madhi sesuai subjek (Dhomir) serta mengenal bentuk Fi\'il Mudhori\'.',
+                        sections: [
+                            {
+                                heading: '1. Perubahan Kata Kerja Lampau (Fi\'il Madhi) Sesuai Pelaku',
+                                content: `<p class="text-sm text-slate-700 mb-3"><strong>Fi'il Madhi</strong> adalah kata kerja yang menunjukkan pekerjaan yang telah dilakukan pada masa lampau. Huruf akhir kata kerja ini berubah mengikuti pelakunya (<em>Dhomir</em>):</p>
+                                <div class="overflow-x-auto rounded-xl border border-slate-200">
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="bg-slate-100 font-bold text-slate-700">
+                                            <tr>
+                                                <th class="px-4 py-2">Pelaku (Dhomir)</th>
+                                                <th class="px-4 py-2">Akhiran</th>
+                                                <th class="px-4 py-2">Contoh Kata Kerja (Duduk / Makan / Menolong / Membuka / Memukul)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200">
+                                            <tr><td class="px-4 py-2 font-bold">هُوَ (Dia lk)</td><td class="px-4 py-2 text-slate-500">Tetap (fathah)</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">جَلَسَ • أَكَلَ • نَصَرَ • فَتَحَ • ضَرَبَ</td></tr>
+                                            <tr><td class="px-4 py-2 font-bold">هِيَ (Dia pr)</td><td class="px-4 py-2 text-emerald-700 font-semibold">+ تْ</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">جَلَسَتْ (Dia pr telah duduk)</td></tr>
+                                            <tr><td class="px-4 py-2 font-bold">أَنْتَ (Kamu lk)</td><td class="px-4 py-2 text-emerald-700 font-semibold">+ تَ</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">أَكَلْتَ (Kamu lk telah makan)</td></tr>
+                                            <tr><td class="px-4 py-2 font-bold">أَنْتِ (Kamu pr)</td><td class="px-4 py-2 text-emerald-700 font-semibold">+ تِ</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">ضَرَبْتِ (Kamu pr telah memukul)</td></tr>
+                                            <tr><td class="px-4 py-2 font-bold">أَنَا (Saya)</td><td class="px-4 py-2 text-emerald-700 font-semibold">+ تُ</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">نَصَرْتُ (Saya telah menolong)</td></tr>
+                                            <tr><td class="px-4 py-2 font-bold">نَحْنُ (Kami)</td><td class="px-4 py-2 text-emerald-700 font-semibold">+ نَا</td><td class="px-4 py-2 arabic-text text-xl font-bold text-emerald-900">فَتَحْنَا (Kami telah membuka)</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>`
+                            },
+                            {
+                                heading: '2. Kata Kerja Sekarang/Akan Datang (Fi\'il Mudhori\')',
+                                content: `<p class="text-sm text-slate-700 mb-2"><strong>Fi'il Mudhori'</strong> adalah kata kerja yang menunjukkan pekerjaan yang sedang atau akan dilakukan. Cirinya diawali dengan salah satu huruf <strong>ا ، ن ، ي ، ت</strong> (disingkat <em>Anaitu</em>):</p>
+                                <div class="grid sm:grid-cols-2 gap-2.5 text-sm">
+                                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Dia (lk) sedang membaca:</span><span class="arabic-text text-xl font-bold text-teal-900">يَقْرَأُ</span></div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Dia (lk) sedang menulis:</span><span class="arabic-text text-xl font-bold text-teal-900">يَكْتُبُ</span></div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Kami sedang belajar:</span><span class="arabic-text text-xl font-bold text-teal-900">نَتَعَلَّمُ</span></div>
+                                    <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl flex justify-between items-center"><span>Dia (lk) bertanya:</span><span class="arabic-text text-xl font-bold text-teal-900">يَسْأَلُ</span></div>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-2">Catatan Pengayaan: Jika kata kerja mudhori' didahului huruf <span class="arabic-text text-base font-bold">لَمْ</span> (belum/tidak), maka harakat akhirnya berubah menjadi sukun, contoh: <span class="arabic-text text-lg font-bold text-slate-800">لَمْ يَفْهَمْ مَعْنَاهُ</span> (dia belum paham maknanya).</p>`
+                            }
+                        ]
+                    }
+                ],
+                quiz: [
+                    {
+                        q: 'Ungkapan bahasa Arab yang memiliki arti "Pukul 04.30 pagi" adalah ....',
+                        options: ['السَّاعَةُ الرَّابِعَةُ وَالنِّصْفُ صَبَاحًا', 'السَّاعَةُ السَّابِعَةُ مَسَاءً', 'السَّاعَةُ الثَّانِيَةُ إِلَّا الرُّبْعَ'],
+                        answer: 0,
+                        explanation: 'الرَّابِعَةُ (empat) + وَالنِّصْفُ (lewat 30 menit) + صَبَاحًا (pagi).'
+                    },
+                    {
+                        q: 'Jika kata kerja lampau "فَتَحَ" (membuka) digunakan untuk pelaku "نَحْنُ" (kami), maka bentuk yang benar adalah ....',
+                        options: ['فَتَحْتُ', 'فَتَحْنَا', 'فَتَحَتْ'],
+                        answer: 1,
+                        explanation: 'Fi\'il Madhi untuk pelaku نَحْنُ mendapatkan tambahan akhiran نَا menjadi فَتَحْنَا.'
+                    },
+                    {
+                        q: 'Di bawah ini yang termasuk contoh kata kerja Fi\'il Mudhori\' (kata kerja sedang/akan dilakukan) adalah ....',
+                        options: ['كَتَبَ (telah menulis)', 'نَتَعَلَّمُ (kami sedang belajar)', 'جَلَسْتُ (saya telah duduk)'],
+                        answer: 1,
+                        explanation: 'نَتَعَلَّمُ diawali huruf Nun mudhara\'ah dan berakhiran dhammah yang menandakan Fi\'il Mudhori\'.'
+                    }
+                ]
+            }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT
+        // ==========================================
+        let currentGradeFilter = 'all';
+        let currentSubjectId = curriculumData[0].id;
+        let currentViewTab = 'materi'; // 'materi' | 'quiz'
+        let searchQuery = '';
+
+        // ==========================================
+        // INITIALIZATION & RENDERING
+        // ==========================================
+        function init() {
+            renderSidebar();
+            renderMainContent();
+            lucide.createIcons();
+        }
+
+        function filterByGrade(grade) {
+            currentGradeFilter = grade;
+            
+            // Update active styling on grade tabs
+            document.querySelectorAll('.grade-tab').forEach(btn => {
+                if (btn.dataset.grade === grade) {
+                    btn.className = 'grade-tab active px-4 py-2 rounded-xl text-sm font-bold transition-all bg-emerald-700 text-white shadow-sm whitespace-nowrap';
+                } else {
+                    btn.className = 'grade-tab px-4 py-2 rounded-xl text-sm font-semibold text-slate-600 hover:bg-slate-100 transition-all whitespace-nowrap';
+                }
+            });
+
+            // Check if currentSubjectId belongs to selected grade
+            const filtered = getFilteredSubjects();
+            if (filtered.length > 0 && !filtered.some(s => s.id === currentSubjectId)) {
+                currentSubjectId = filtered[0].id;
+            }
+
+            renderSidebar();
+            renderMainContent();
+        }
+
+        function getFilteredSubjects() {
+            return curriculumData.filter(subj => {
+                const matchGrade = currentGradeFilter === 'all' || subj.grade === currentGradeFilter;
+                return matchGrade;
+            });
+        }
+
+        function selectSubject(id) {
+            currentSubjectId = id;
+            renderSidebar();
+            renderMainContent();
+            // Scroll smoothly to content on mobile
+            if (window.innerWidth < 1024) {
+                document.getElementById('main-content-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function switchViewTab(tab) {
+            currentViewTab = tab;
+            const btnMateri = document.getElementById('tab-btn-materi');
+            const btnQuiz = document.getElementById('tab-btn-quiz');
+            const containerMateri = document.getElementById('chapters-container');
+            const containerQuiz = document.getElementById('quiz-container');
+
+            if (tab === 'materi') {
+                btnMateri.className = 'flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-emerald-800 shadow-sm transition-all';
+                btnQuiz.className = 'flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all';
+                containerMateri.classList.remove('hidden');
+                containerQuiz.classList.add('hidden');
+            } else {
+                btnQuiz.className = 'flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-white text-emerald-800 shadow-sm transition-all';
+                btnMateri.className = 'flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 transition-all';
+                containerQuiz.classList.remove('hidden');
+                containerMateri.classList.add('hidden');
+            }
+        }
+
+        function handleSearch() {
+            searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            renderMainContent();
+        }
+
+        function toggleFocusMode() {
+            document.body.classList.toggle('focus-mode');
+            const exitBar = document.getElementById('focus-exit-bar');
+            if (document.body.classList.contains('focus-mode')) {
+                exitBar.classList.remove('hidden');
+            } else {
+                exitBar.classList.add('hidden');
+            }
+            lucide.createIcons();
+        }
+
+        function renderSidebar() {
+            const listEl = document.getElementById('subject-list');
+            const countEl = document.getElementById('subject-count');
+            const subjects = getFilteredSubjects();
+            
+            countEl.textContent = `${subjects.length} Mapel`;
+            listEl.innerHTML = subjects.map(subj => {
+                const isActive = subj.id === currentSubjectId;
+                return `
+                    <button onclick="selectSubject('${subj.id}')" 
+                        class="w-full text-left px-3.5 py-3 rounded-xl transition-all flex items-center gap-3 shrink-0 lg:shrink border ${
+                            isActive 
+                            ? 'bg-emerald-50 border-emerald-500/40 text-emerald-900 shadow-sm' 
+                            : 'bg-white border-transparent hover:bg-slate-50 text-slate-700'
+                        }">
+                        <div class="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${
+                            isActive ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-500'
+                        }">
+                            <i data-lucide="${subj.icon}" class="w-4 h-4"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-xs font-bold ${isActive ? 'text-emerald-700' : 'text-slate-400'}">${subj.gradeLabel}</div>
+                            <div class="text-sm font-bold truncate">${subj.title}</div>
+                        </div>
+                    </button>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        function renderMainContent() {
+            const subj = curriculumData.find(s => s.id === currentSubjectId) || curriculumData[0];
+            
+            // 1. Render Subject Header
+            const headerEl = document.getElementById('subject-header');
+            headerEl.innerHTML = `
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="px-3 py-1 rounded-lg bg-emerald-100 text-emerald-800 text-xs font-extrabold uppercase tracking-wide">${subj.gradeLabel}</span>
+                            <span class="px-3 py-1 rounded-lg bg-gold-100 text-gold-800 text-xs font-bold">${subj.chapters.length} Bab Pembelajaran</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">${subj.title}</h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-3xl">${subj.description}</p>
+                    </div>
+                </div>
+            `;
+
+            // 2. Render Chapters (with Search Filtering)
+            const chaptersEl = document.getElementById('chapters-container');
+            let filteredChapters = subj.chapters;
+
+            if (searchQuery) {
+                filteredChapters = subj.chapters.map(chap => {
+                    const matchedSections = chap.sections.filter(sec => 
+                        sec.heading.toLowerCase().includes(searchQuery) || 
+                        sec.content.toLowerCase().includes(searchQuery)
+                    );
+                    if (chap.title.toLowerCase().includes(searchQuery) || chap.summary.toLowerCase().includes(searchQuery)) {
+                        return chap;
+                    }
+                    if (matchedSections.length > 0) {
+                        return { ...chap, sections: matchedSections };
+                    }
+                    return null;
+                }).filter(Boolean);
+            }
+
+            if (filteredChapters.length === 0) {
+                chaptersEl.innerHTML = `
+                    <div class="bg-white rounded-2xl border border-slate-200 p-10 text-center">
+                        <i data-lucide="search-x" class="w-10 h-10 text-slate-300 mx-auto mb-3"></i>
+                        <h3 class="text-base font-bold text-slate-800 mb-1">Topik tidak ditemukan pada mata pelajaran ini</h3>
+                        <p class="text-sm text-slate-500">Coba kata kunci lain atau pilih mata pelajaran lain di daftar samping.</p>
+                    </div>
+                `;
+            } else {
+                chaptersEl.innerHTML = filteredChapters.map((chap, idx) => `
+                    <article class="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden transition-all">
+                        <div class="bg-slate-50/80 border-b border-slate-200/80 px-6 py-5 flex items-start justify-between gap-4">
+                            <div>
+                                <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-700">${chap.bab}</span>
+                                <h3 class="text-xl font-extrabold text-slate-900 mt-0.5">${chap.title}</h3>
+                                <p class="text-sm text-slate-500 mt-1">${chap.summary}</p>
+                            </div>
+                        </div>
+                        <div class="p-6 space-y-6">
+                            ${chap.sections.map(sec => `
+                                <div class="${sec.isEnrichment ? 'bg-amber-50/40 border border-amber-200/80 rounded-2xl p-5' : ''}">
+                                    <div class="flex items-center gap-2 mb-2.5">
+                                        ${sec.isEnrichment ? '<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-bold"><i data-lucide="sparkles" class="w-3 h-3"></i> Pengayaan Wawasan</span>' : ''}
+                                        <h4 class="text-base sm:text-lg font-bold text-slate-900">${sec.heading}</h4>
+                                    </div>
+                                    <div class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                                        ${sec.content}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </article>
+                `).join('');
+            }
+
+            // 3. Render Quiz Tab
+            renderQuiz(subj);
+            lucide.createIcons();
+        }
+
+        function renderQuiz(subj) {
+            const quizEl = document.getElementById('quiz-container');
+            quizEl.innerHTML = `
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8">
+                    <div class="flex items-center gap-3 pb-5 mb-6 border-b border-slate-200">
+                        <div class="w-10 h-10 rounded-xl bg-gold-100 text-gold-700 flex items-center justify-center shrink-0">
+                            <i data-lucide="lightbulb" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-extrabold text-slate-900">Latihan Uji Pemahaman Konsep — ${subj.title} (${subj.gradeLabel})</h3>
+                            <p class="text-xs sm:text-sm text-slate-500">Pilih jawaban yang menurutmu paling tepat untuk mengukur pemahamanmu setelah membaca materi.</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        ${subj.quiz.map((item, qIdx) => `
+                            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/80" id="quiz-card-${qIdx}">
+                                <p class="font-bold text-slate-900 text-sm sm:text-base mb-3">${qIdx + 1}. ${item.q}</p>
+                                <div class="space-y-2">
+                                    ${item.options.map((opt, optIdx) => `
+                                        <button onclick="checkAnswer(${qIdx}, ${optIdx}, ${item.answer})" 
+                                            id="opt-${qIdx}-${optIdx}"
+                                            class="w-full text-left px-4 py-3 rounded-xl bg-white border border-slate-200 hover:border-emerald-500 text-sm font-medium text-slate-700 transition-all flex items-center justify-between">
+                                            <span>${opt}</span>
+                                        </button>
+                                    `).join('')}
+                                </div>
+                                <div id="feedback-${qIdx}" class="hidden mt-3 p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed"></div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAnswer(qIdx, selectedIdx, correctIdx) {
+            const subj = curriculumData.find(s => s.id === currentSubjectId);
+            const item = subj.quiz[qIdx];
+            const feedbackEl = document.getElementById(`feedback-${qIdx}`);
+
+            // Reset buttons in this question
+            item.options.forEach((_, idx) => {
+                const btn = document.getElementById(`opt-${qIdx}-${idx}`);
+                btn.className = 'w-full text-left px-4 py-3 rounded-xl bg-white border border-slate-200 text-sm font-medium text-slate-700 transition-all flex items-center justify-between';
+            });
+
+            const selectedBtn = document.getElementById(`opt-${qIdx}-${selectedIdx}`);
+            const correctBtn = document.getElementById(`opt-${qIdx}-${correctIdx}`);
+
+            if (selectedIdx === correctIdx) {
+                selectedBtn.className = 'w-full text-left px-4 py-3 rounded-xl bg-emerald-50 border-2 border-emerald-600 text-sm font-bold text-emerald-900 flex items-center justify-between';
+                feedbackEl.className = 'mt-3 p-3.5 rounded-xl bg-emerald-100/80 text-emerald-950 text-xs sm:text-sm leading-relaxed';
+                feedbackEl.innerHTML = `<strong>Tepat Sekali!</strong> ${item.explanation}`;
+            } else {
+                selectedBtn.className = 'w-full text-left px-4 py-3 rounded-xl bg-rose-50 border-2 border-rose-500 text-sm font-bold text-rose-900 flex items-center justify-between';
+                correctBtn.className = 'w-full text-left px-4 py-3 rounded-xl bg-emerald-50 border border-emerald-500 text-sm font-bold text-emerald-900 flex items-center justify-between';
+                feedbackEl.className = 'mt-3 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-slate-800 text-xs sm:text-sm leading-relaxed';
+                feedbackEl.innerHTML = `<strong>Kurang Tepat.</strong> ${item.explanation}`;
+            }
+            feedbackEl.classList.remove('hidden');
+        }
+
+        // Start App
+        window.addEventListener('DOMContentLoaded', function() {
+            try {
+                init();
+            } catch (err) {
+                console.error('Initialization error:', err);
+            }
+        });
+    </script>
+</body>
+</html>
